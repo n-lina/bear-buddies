@@ -3,7 +3,8 @@ import "./main.css"
 import ProgressBar from '@ramonak/react-progress-bar';
 import ReactDOM from 'react-dom'
 import { Illustration, Ellipse, Shape, RoundedRect, useRender } from 'react-zdog'
-import { a, useSpring } from 'react-spring/zdog'
+import { a, useSpring } from 'react-spring/zdog';
+import Bear from './../animations/bear';
 
 /** --- Basic, re-usable shapes -------------------------- */
 const TAU = Math.PI * 2
