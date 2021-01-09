@@ -1,0 +1,49 @@
+.main {
+    height: 100%;
+}
+
+.leftSide {
+    height: 100%;
+    background: pink; 
+    float: left; 
+    width: 30%;
+}
+
+.level {
+    height: 20%;
+    background: blue
+}
+
+.vitals {
+    height: 60%; 
+    background: lightgreen;
+}
+
+.userToolbar {
+    height: 20%; 
+    background: pink
+}
+
+.zdog {
+    background: green;
+    height: 90%;
+    float: left;
+    width: 40%;
+    margin-top: 25px;
+}
+
+.rightSide{
+    height: 90%;
+    float: right;
+    width: 30%;
+    background: lightpink;
+    margin-top: 25px;
+}
+
+.control {
+    float: left; 
+    width: 48%;
+    height: 32%;
+    margin: 1%;
+    background: red
+}
