@@ -3,7 +3,7 @@ import "./main.css"
 import ProgressBar from '@ramonak/react-progress-bar';
 import ReactDOM from 'react-dom'
 import { Illustration, Ellipse, Shape, RoundedRect, useRender } from 'react-zdog'
-import { a, useSpring } from '@react-spring/zdog'
+import { a, useSpring } from 'react-spring/zdog'
 
 /** --- Basic, re-usable shapes -------------------------- */
 const TAU = Math.PI * 2
@@ -39,7 +39,7 @@ function Guy() {
     }
     return (
       <Shape ref={ref} path={[{ x: -3 }, { x: 3 }]} stroke={4} color="#747B9E">
-        <a.Anchor rotate={rotation.to(r => ({ x: TAU / 18 + -r / 4 }))}>
+        <a.Anchor rotate={rotation.interpolate(r => ({ x: TAU / 18 + -r / 4 }))}>
           <Shape path={[{ x: -1.5 }, { x: 1.5 }]} translate={{ y: -6 }} stroke={9} color="#E1E5EE">
             <a.Shape stroke={11} translate={{ y: -9.5 }} color={color}>
               <Shape translate={{ x: 0, y: -2, z: -4 }} stroke={8} color="#747B9E" />
@@ -51,12 +51,12 @@ function Guy() {
               <Ellipse diameter={1} translate={{ x: 3.5, y: 1.5, z: 4.5 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.5} fill />
               <Ellipse diameter={0.5} translate={{ x: 4.5, y: -4.5, z: 4.5 }} rotate={{ z: TAU / 4 }} closed color="lightblue" stroke={0.5} fill />
             </a.Shape>
-            <Arm rotate={rotation.to(r => ({ x: -TAU / 4 + r }))} />
-            <Arm translate={{ x: 5, y: -2 }} rotate={rotation.to(r => ({ x: TAU / 4 - r }))} />
+            <Arm rotate={rotation.interpolate(r => ({ x: -TAU / 4 + r }))} />
+            <Arm translate={{ x: 5, y: -2 }} rotate={rotation.interpolate(r => ({ x: TAU / 4 - r }))} />
           </Shape>
         </a.Anchor>
-        <Leg rotate={rotation.to(r => ({ x: TAU / 5 - r / 1.2 }))} />
-        <Leg translate={{ x: 3 }} rotate={rotation.to(r => ({ x: -TAU / 5 + r / 1.2 }))} />
+        <Leg rotate={rotation.interpolate(r => ({ x: TAU / 5 - r / 1.2 }))} />
+        <Leg translate={{ x: 3 }} rotate={rotation.interpolate(r => ({ x: -TAU / 5 + r / 1.2 }))} />
       </Shape>
     )
   }
