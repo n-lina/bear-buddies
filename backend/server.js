@@ -28,8 +28,8 @@ connection.once('open', () => {
     console.log("MongoDB connection established successfully!");
 });
 
-const taskRouter = require('./routes/tasks');
-app.use('/tasks', taskRouter);
+const apiRouter = require('./routes/api');
+app.use('/api', apiRouter);
 
 // starts server
 app.listen(port, () => {
