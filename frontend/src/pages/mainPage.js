@@ -7,14 +7,28 @@ const MainPage = () => {
   return (
     <div className = "main">
         <div className = "leftSide">
-            <div className = "level">Level</div>
-            <div className = "vitals">
-                <ProgressBar completed={60}/>
-                <ProgressBar completed={60}/>
-                <ProgressBar completed={60}/>
+            <div className = "level">
+                <p className = "label"> Level </p>
                 <ProgressBar completed={60}/>
             </div>
-            <div className = "userToolbar">toolbar</div>
+            <div className = "vitals">
+                <p className = "label">Fullness</p>
+                <ProgressBar completed={60}/>
+                <p className = "label">Cleanliness</p>
+                <ProgressBar completed={60}/>
+                <p className = "label">Energy</p>
+                <ProgressBar completed={60}/>
+                <p className = "label">Happiness</p>
+                <ProgressBar completed={60}/>
+                <p className = "label">Calmness</p>
+                <ProgressBar completed={60}/>
+                <p className = "label">Health</p>
+                <ProgressBar completed={60}/>
+            </div>
+            <div className = "userToolbar">
+                <div className = "icon">Camera</div>
+                <div className = "icon">Accessories</div>
+            </div>
         </div>
         <div className = "zdog"> Zdog
         </div>
