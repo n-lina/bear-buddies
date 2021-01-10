@@ -41,7 +41,7 @@ class App extends Component {
   }
 
   render() {
-    return (
+    return this.state.loading === true ? <h2>Loading...</h2> : (
       <div>
         <RootStoreProvider value={rootStore}>
           <Router>
