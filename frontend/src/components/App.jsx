@@ -9,6 +9,7 @@ import RootStore from "../models/RootStore";
 import {RootStoreProvider} from "../models/RootStoreContext"
 import { auth } from "../firebase"
 import PrivateRoute from "../components/PrivateRoute"
+import LoggedInRoute from "../components/LoggedInRoute"
 
 
 const rootStore = RootStore.create()
@@ -36,9 +37,9 @@ class App extends Component {
         <RootStoreProvider value={rootStore}>
           <Router>
             <Switch>
-              <Route path='/signin' component={SignIn} exact={true}/>
-              <Route path='/signup' component={SignUp} exact={true}/>
-              <PrivateRoute path='/' component={Home} user={this.state.user}/>
+              <LoggedInRoute path='/signin' component={SignIn} other="/" exact={true}/>
+              <LoggedInRoute path='/signup' component={SignUp} other="/" exact={true}/>
+              <PrivateRoute path='/' component={Home} other="/signin" user={this.state.user}/>
             </Switch>
           </Router>
         </RootStoreProvider>
