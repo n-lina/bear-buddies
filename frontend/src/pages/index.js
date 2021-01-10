@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Landing from "./landing"
 import MainPage from "./mainPage"
 
-
 const Home = () => {
   return (
   <div className="Background">
