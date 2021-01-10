@@ -2,8 +2,8 @@
   text-align: center;
   box-sizing: border-box;
   margin-bottom: 60px;
-  margin-left: 75px; 
-  margin-right: 75px;
+  margin-left: 60px; 
+  margin-right: 60px;
   padding: 0px;
   font-family: 'Montserrat', sans-serif;
   background-color:yellow;
@@ -15,9 +15,10 @@
 .header {
   height: 60px;
   background: cyan;
-  margin-left: 75px; 
-  margin-right: 75px;
+  margin-left: 60px; 
+  margin-right: 60px;
   margin-top: 60px;
+  border-radius: 30px;
 
 }
 
