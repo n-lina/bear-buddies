@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { auth } from '../firebase';
+import axios from 'axios';
 
 const styles = (theme) => ({
   paper: {
@@ -55,11 +56,21 @@ class SignUp extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state.email)
-    console.log(this.state.pass);
     auth.createUserWithEmailAndPassword(this.state.email, this.state.pass)
       .then((user) => {
-        console.log(user);
+        axios({
+          method: 'post',
+          url: '/api/',
+          data: {
+            requesterID: user.user.uid,
+            level: 1,
+            experience: 0,
+            animalName: "Odie",
+            hunger: 0,
+            happiness: 100,
+            cleanliness: 100
+          }
+        });
       })
       .catch((error) => {
         console.log(error);

@@ -46,8 +46,8 @@ class App extends Component {
         <RootStoreProvider value={rootStore}>
           <Router>
             <Switch>
-              <PublicRoute path='/signin' component={SignIn} authenticated={this.state.authenticated} exact={true}/>
-              <PublicRoute path='/signup' component={SignUp} authenticated={this.state.authenticated} exact={true}/>
+              <PublicRoute path='/signin' component={SignIn} authenticated={this.state.authenticated} exact={true} user={this.state.user}/>
+              <PublicRoute path='/signup' component={SignUp} authenticated={this.state.authenticated} exact={true} user={this.state.user}/>
               <PrivateRoute path='/' component={Home} authenticated={this.state.authenticated} user={this.state.user}/>
             </Switch>
           </Router>
