@@ -99,6 +99,16 @@ function NormalBear() {
         </a.Shape>
     );
 
+    // cleanliness indicator
+    const Poop = () => (
+        <a.Shape stroke={0} translate={{ x: 20 }} scale={0.5} rotate={{ x: TAU / -4 }}>
+            <Ellipse diameter={7} color="brown" stroke={4} />
+            <Ellipse diameter={5} color="brown" stroke={3} translate={{ z: -3 }} />
+            <Ellipse diameter={3} color="brown" stroke={2} translate={{ z: -5 }} />
+            <a.Cone diameter={4} color="brown" length={-4} translate={{ z: -6 }} stroke={false} />
+        </a.Shape>
+    );
+
     return (
         <a.Shape ref={ref} stroke={15} translate={{ y: -9.5 }} color={color}> {/*head*/}
             <a.Shape ref={ref} stroke={4} translate={{ x: -7, y: -4 }} color={color_tint} fill /> {/*left ear*/}
@@ -144,6 +154,19 @@ function FeedBear() {
     let t = 0
     useRender(() => (ref.current.rotate.y = Math.cos((t += 0.1) / TAU)));
 
+    const Fish = () => (
+        <a.Shape stroke={0} translate={{ x: 20 }} >
+            <a.Cone diameter={6} color="coral" length={-4} translate={{ z: -1 }} />
+            <a.Hemisphere diameter={6} color="indianred" stroke='false' />
+            <a.Shape path={[{ x: 0, y: -1.5 },
+            { x: 1.5, y: 1.5 },
+            { x: -1.5, y: 1.5 },
+            ]} stroke={2} color="coral" translate={{ z: 5 }} rotate={{ y: TAU / -4 }} />
+            <a.Shape stroke={0.5} color='black' translate={{ z: -4, x: -1 }} />
+            <a.Shape stroke={0.5} color='black' translate={{ z: -4, x: 1 }} />
+        </a.Shape>
+    );
+
     return (
         <a.Shape ref={ref} stroke={15} translate={{ y: -9.5 }} color={color}> {/*head*/}
             <a.Shape ref={ref} stroke={4} translate={{ x: -7, y: -4 }} color={color_tint} fill /> {/*left ear*/}
@@ -172,10 +195,9 @@ function FeedBear() {
                 <a.Ellipse height={1} width={1} stroke={4} color='#c21540' translate={{ x: -20 + two, y: 1.5 + two, z: 14 }} fill />
                 <a.Ellipse height={1} width={1} stroke={4} color='#c21540' translate={{ x: -14 + two, y: 1.5 + two, z: 14 }} fill />
             </a.Shape>
-            <a.Shape stroke={0} ref={ref}>
-                <a.Ellipse height={5} width={1} stroke={4} rotate={{ z: TAU / 4 }} translate={{ x: 15, y: -5, z: 12 }} color="#6d7f87" fill>
-                    <a.Shape height={1} width={1} color="black" translate={{ y: 2.5, z: 1.5 }} />
-                </a.Ellipse>
+            <Fish />
+            <a.Shape stroke={0} translate={{ x: -15, y: 15.5 }} rotate={{ y: TAU / 1.5 }} >
+                <Fish />
             </a.Shape>
         </a.Shape>
     );
@@ -194,12 +216,12 @@ function PlayBear() {
     const rightArm = up ? -3 : -6;
     const rightLeg = up ? 1 : -3;
 
-    // const { rotation, color, color_tint, size } = useSpring({ size: up ? 1.2 : 0.2, color: up ? '#7a5843' : '#7a5843', color_tint: up ? '#7b6044' : '#7b6044', rotation: up ? 0 : Math.PI });
+    // const {rotation, color, color_tint, size} = useSpring({ size: up ? 1.2 : 0.2, color: up ? '#7a5843' : '#7a5843', color_tint: up ? '#7b6044' : '#7b6044', rotation: up ? 0 : Math.PI });
     const size = 1.2;
     const color = "#7a5843"
     const color_tint = "#7b6044"
     const rotation = 0;
-    // const { rotation, color, size } = useSpring({ size: up ? 1.2 : bbb, color: up ? '#EA0' : aaa, rotation: up ? 0 : ccc })
+    // const {rotation, color, size} = useSpring({ size: up ? 1.2 : bbb, color: up ? '#EA0' : aaa, rotation: up ? 0 : ccc })
     const { la, ll, ra, rl } = useSpring({ la: up ? 3 : leftArm, ll: up ? 0 : leftLeg, ra: up ? -3 : rightArm, rl: up ? 0 : rightLeg });
 
     const ref = useRef()
@@ -303,12 +325,12 @@ function BatheBear() {
     const rightArm = up ? -3 : -6;
     const rightLeg = up ? 1 : -3;
 
-    // const { rotation, color, color_tint, size } = useSpring({ size: up ? 1.2 : 0.2, color: up ? '#7a5843' : '#7a5843', color_tint: up ? '#7b6044' : '#7b6044', rotation: up ? 0 : Math.PI });
+    // const {rotation, color, color_tint, size} = useSpring({ size: up ? 1.2 : 0.2, color: up ? '#7a5843' : '#7a5843', color_tint: up ? '#7b6044' : '#7b6044', rotation: up ? 0 : Math.PI });
     const size = 1.2;
     const color = "#7a5843"
     const color_tint = "#7b6044"
     const rotation = 0;
-    // const { rotation, color, size } = useSpring({ size: up ? 1.2 : bbb, color: up ? '#EA0' : aaa, rotation: up ? 0 : ccc })
+    // const {rotation, color, size} = useSpring({ size: up ? 1.2 : bbb, color: up ? '#EA0' : aaa, rotation: up ? 0 : ccc })
     const { la, ll, ra, rl } = useSpring({ la: up ? 3 : leftArm, ll: up ? 0 : leftLeg, ra: up ? -3 : rightArm, rl: up ? 0 : rightLeg });
 
     const ref = useRef()
@@ -372,12 +394,12 @@ function SleepBear() {
     const rightArm = up ? -3 : -6;
     const rightLeg = up ? 1 : -3;
 
-    // const { rotation, color, color_tint, size } = useSpring({ size: up ? 1.2 : 0.2, color: up ? '#7a5843' : '#7a5843', color_tint: up ? '#7b6044' : '#7b6044', rotation: up ? 0 : Math.PI });
+    // const {rotation, color, color_tint, size} = useSpring({ size: up ? 1.2 : 0.2, color: up ? '#7a5843' : '#7a5843', color_tint: up ? '#7b6044' : '#7b6044', rotation: up ? 0 : Math.PI });
     const size = 1.2;
     const color = "#7a5843"
     const color_tint = "#7b6044"
     const rotation = 0;
-    // const { rotation, color, size } = useSpring({ size: up ? 1.2 : bbb, color: up ? '#EA0' : aaa, rotation: up ? 0 : ccc })
+    // const {rotation, color, size} = useSpring({ size: up ? 1.2 : bbb, color: up ? '#EA0' : aaa, rotation: up ? 0 : ccc })
     const { la, ll, ra, rl } = useSpring({ la: up ? 3 : leftArm, ll: up ? 0 : leftLeg, ra: up ? -3 : rightArm, rl: up ? 0 : rightLeg });
 
     const ref = useRef()
@@ -455,12 +477,12 @@ function PetBear() {
     const rightArm = -4
     const rightLeg = -3
 
-    // const { rotation, color, color_tint, size } = useSpring({ size: up ? 1.2 : 0.2, color: up ? '#7a5843' : '#7a5843', color_tint: up ? '#7b6044' : '#7b6044', rotation: up ? 0 : Math.PI });
+    // const {rotation, color, color_tint, size} = useSpring({ size: up ? 1.2 : 0.2, color: up ? '#7a5843' : '#7a5843', color_tint: up ? '#7b6044' : '#7b6044', rotation: up ? 0 : Math.PI });
     const size = 1.2;
     const color = "#7a5843"
     const color_tint = "#7b6044"
     const rotation = 0;
-    // const { rotation, color, size } = useSpring({ size: up ? 1.2 : bbb, color: up ? '#EA0' : aaa, rotation: up ? 0 : ccc })
+    // const {rotation, color, size} = useSpring({ size: up ? 1.2 : bbb, color: up ? '#EA0' : aaa, rotation: up ? 0 : ccc })
     const { la, ll, ra, rl } = useSpring({ la: up ? 3 : leftArm, ll: up ? 0 : leftLeg, ra: up ? -3 : rightArm, rl: up ? 0 : rightLeg });
 
     const ref = useRef()
