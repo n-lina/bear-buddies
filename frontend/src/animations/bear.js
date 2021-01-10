@@ -71,7 +71,6 @@ function NormalBear() {
             <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: -11, y: 10 }} rotate={{ z: TAU / -3 }} color={color_tint} fill /> {/*right arm*/}
             <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: 6, y: 23 }} rotate={{ z: TAU / 1 }} color={color_tint} fill /> {/*left leg*/}
             <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: -6, y: 23 }} rotate={{ z: TAU / 1 }} color={color_tint} fill /> {/*right leg*/}
-            {/* had to put 0.001 cuz cant divide by 0    */}
         </a.Shape>
     );
 }
@@ -149,12 +148,20 @@ function PlayBear() {
 
     return (
         <a.Shape ref={ref} stroke={15} translate={{ y: -9.5 }} color={color}> {/*head*/}
+            <a.Shape>
+                <a.Shape ref={ref} stroke={1.5} translate={{ x: 15, y: 0, z: 5 }} color="#87c9e8" fill />
+                <a.Shape ref={ref} stroke={1.5} translate={{ x: 0, y: 1, z: 5 }} color="#87c9e8" fill />
+            </a.Shape>
+
+            <Shape path={[{ x: 0 }, { x: 1 }]} stroke={0.5} translate={{ x: -2, y: -1, z: 5 }} rotate={{ z: TAU / 1.8 }} color="#241d19" />
+            <Shape path={[{ x: 0 }, { x: 1 }]} stroke={0.5} translate={{ x: -2, y: -1, z: 5 }} rotate={{ z: TAU / 2.5 }} color="#241d19" />
+
+            <Shape path={[{ x: 0 }, { x: 1 }]} stroke={0.5} translate={{ x: 3, y: -1, z: 5 }} rotate={{ z: TAU / 1.1 }} color="#241d19" />
+            <Shape path={[{ x: 0 }, { x: 1 }]} stroke={0.5} translate={{ x: 3, y: -1, z: 5 }} rotate={{ z: TAU / 8.5 }} color="#241d19" />
+
             <a.Shape ref={ref} stroke={4} translate={{ x: -7, y: -4 }} color={color_tint} fill /> {/*left ear*/}
             <a.Shape ref={ref} stroke={4} translate={{ x: 7, y: -4 }} color={color_tint} fill /> {/*right ear*/}
-            {/*<Eye /> left eye*/}
-            <a.Shape ref={ref} stroke={1.2} translate={{ x: -2.2, y: -1, z: 6.8 }} color="#241d19" fill /> {/*left eye*/}
-            {/*<Eye translate={{ x: 2.2, z: 6.8 }} /> right eye*/}
-            <a.Shape ref={ref} stroke={1.2} translate={{ x: 2.2, y: -1, z: 6.8 }} color="#241d19" fill /> {/*right eye*/}
+
             <a.Shape height={3} width={2} ref={ref} scale={size} translate={{ y: 2.5, z: 6.8 }} rotate={{ z: TAU / 4 }} closed color="#b08b74" stroke={6} fill /> {/*mouth*/}
             <a.Shape height={1.3} width={1} ref={ref} scale={size} translate={{ y: 2, z: 9 }} rotate={{ z: TAU / 4 }} closed color="#241d19" stroke={3} fill> {/*nose*/}
                 <a.Ellipse height={.1} width={.05} ref={ref} translate={{ x: -.5, y: 0, z: 0 }} color="white" fill />
@@ -162,10 +169,10 @@ function PlayBear() {
             <Ellipse diameter={1} translate={{ x: -3.5, y: 1.5, z: 6.5 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.5} fill /> {/*left blush*/}
             <Ellipse diameter={1} translate={{ x: 3.5, y: 1.5, z: 6.5 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.5} fill /> {/*left right*/}
             <a.Ellipse height={7} width={4} ref={ref} stroke={14} translate={{ x: 0, y: 13 }} color={color} fill /> {/*body*/}
-            <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: 11, y: 10 }} rotate={{ z: TAU / (up ? 3 : leftArm) }} color={color_tint} fill /> {/*left arm*/}
-            <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: -11, y: 10 }} rotate={{ z: TAU / (up ? -3 : rightArm) }} color={color_tint} fill /> {/*right arm*/}
-            <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: 6, y: 23 }} rotate={{ z: TAU / (up ? 1 : leftLeg) }} color={color_tint} fill /> {/*left leg*/}
-            <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: -6, y: 23 }} rotate={{ z: TAU / (up ? 1 : rightLeg) }} color={color_tint} fill /> {/*right leg*/}
+            <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: 11, y: up ? 10 : 10 - 3 }} rotate={{ z: TAU / (up ? 3 : leftArm) }} color={color_tint} fill /> {/*left arm*/}
+            <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: -11, y: up ? 10 : 10 - 3 }} rotate={{ z: TAU / (up ? -3 : rightArm) }} color={color_tint} fill /> {/*right arm*/}
+            <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: 6, y: up ? 23 : 23 - 2 }} rotate={{ z: TAU / (up ? 1 : leftLeg) }} color={color_tint} fill /> {/*left leg*/}
+            <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: -6, y: up ? 23 : 23 - 2 }} rotate={{ z: TAU / (up ? 1 : rightLeg) }} color={color_tint} fill /> {/*right leg*/}
         </a.Shape>
     );
 }
@@ -182,14 +189,11 @@ function BreatheBear() {
     const rightArm = up ? -3 : -6;
     const rightLeg = up ? 1 : -3;
 
-    const tummy = up ? 4 : 15;
+    const tummy = up ? 1 : 1.1;
 
-    // const { rotation, color, color_tint, size } = useSpring({ size: up ? 1.2 : 0.2, color: up ? '#7a5843' : '#7a5843', color_tint: up ? '#7b6044' : '#7b6044', rotation: up ? 0 : Math.PI });
     const size = 1.2;
     const color = "#7a5843"
     const color_tint = "#7b6044"
-    const rotation = 0;
-    // const { rotation, color, size } = useSpring({ size: up ? 1.2 : bbb, color: up ? '#EA0' : aaa, rotation: up ? 0 : ccc })
     const { la, ll, ra, rl } = useSpring({ la: up ? 3 : leftArm, ll: up ? 0 : leftLeg, ra: up ? -3 : rightArm, rl: up ? 0 : rightLeg });
 
     const ref = useRef()
@@ -200,21 +204,19 @@ function BreatheBear() {
         <a.Shape ref={ref} stroke={15} translate={{ y: -9.5 }} color={color}> {/*head*/}
             <a.Shape ref={ref} stroke={4} translate={{ x: -7, y: -4 }} color={color_tint} fill /> {/*left ear*/}
             <a.Shape ref={ref} stroke={4} translate={{ x: 7, y: -4 }} color={color_tint} fill /> {/*right ear*/}
-            {/*<Eye /> left eye*/}
-            <a.Shape ref={ref} stroke={1.2} translate={{ x: -2.2, y: -1, z: 6.8 }} color="#241d19" fill /> {/*left eye*/}
-            {/*<Eye translate={{ x: 2.2, z: 6.8 }} /> right eye*/}
-            <a.Shape ref={ref} stroke={1.2} translate={{ x: 2.2, y: -1, z: 6.8 }} color="#241d19" fill /> {/*right eye*/}
+            <a.Ellipse stroke={0.3} diameter={3} quarters={1} translate={{ x: -2.2, y: -3, z: 5 }} rotate={{ z: TAU / 3 }} color="#241d19" /> {/*left eye*/}
+            <a.Ellipse stroke={0.3} diameter={3} quarters={1} translate={{ x: 2.2, y: -3, z: 5 }} rotate={{ z: TAU / 3 }} color="#241d19" /> {/*right eye*/}
             <a.Shape height={3} width={2} ref={ref} scale={size} translate={{ y: 2.5, z: 6.8 }} rotate={{ z: TAU / 4 }} closed color="#b08b74" stroke={6} fill /> {/*mouth*/}
             <a.Shape height={1.3} width={1} ref={ref} scale={size} translate={{ y: 2, z: 9 }} rotate={{ z: TAU / 4 }} closed color="#241d19" stroke={3} fill> {/*nose*/}
                 <a.Ellipse height={.1} width={.05} ref={ref} translate={{ x: -.5, y: 0, z: 0 }} color="white" fill />
             </a.Shape>
             <Ellipse diameter={1} translate={{ x: -3.5, y: 1.5, z: 6.5 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.5} fill /> {/*left blush*/}
             <Ellipse diameter={1} translate={{ x: 3.5, y: 1.5, z: 6.5 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.5} fill /> {/*left right*/}
-            <a.Ellipse height={7} width={4} ref={ref} stroke={up ? 14 : tummy} translate={{ x: 0, y: 13 }} color={color} fill /> {/*body*/}
-            <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: 11, y: 10 }} rotate={{ z: TAU / 3 }} color={color_tint} fill /> {/*left arm*/}
-            <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: -11, y: 10 }} rotate={{ z: TAU / -3 }} color={color_tint} fill /> {/*right arm*/}
-            <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: 6, y: 23 }} rotate={{ z: TAU / 1 }} color={color_tint} fill /> {/*left leg*/}
-            <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: -6, y: 23 }} rotate={{ z: TAU / 1 }} color={color_tint} fill /> {/*right leg*/}
+            <a.Ellipse height={7} width={4} ref={ref} stroke={14} scale={up ? 1 : tummy} translate={{ x: 0, y: 13 }} color={color} fill /> {/*body*/}
+            <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: 4, y: 10, z: 6 }} rotate={{ z: TAU / -8 }} color={color_tint} fill /> {/*left arm*/}
+            <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: -4, y: 10, z: 6 }} rotate={{ z: TAU / 8 }} color={color_tint} fill /> {/*right arm*/}
+            <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: 4, y: 23 }} rotate={{ z: TAU / 5 }} color={color_tint} fill /> {/*left leg*/}
+            <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: -4, y: 23 }} rotate={{ z: TAU / -5 }} color={color_tint} fill /> {/*right leg*/}
         </a.Shape>
     );
 }
@@ -261,51 +263,51 @@ function SleepBear() {
     //         <Shape translate={{ z: 4, y: 9, x: 0 }} stroke={5.4} color="#EA0" />
     //     </a.Shape>
     // )
-        return (
-            <a.Shape stroke={0} translate={{ y: 10}}>
-                <a.Shape stroke={15} translate={{ y: 0, x: 10 }} rotate={{z: TAU/4, x: TAU/4}} color={color}> {/*head*/}
-                    <a.Shape stroke={4} translate={{ x: -7, y: -4 }} color={color_tint} fill /> {/*left ear*/}
-                    <a.Shape stroke={4} translate={{ x: 7, y: -4 }} color={color_tint} fill /> {/*right ear*/}
-                    {/*<Eye /> left eye*/}
-                    <a.Ellipse stroke={0.3} diameter={3} quarters={1} translate={{ x: -2.2, y: -3, z: 5 }} rotate={{ z: TAU / 3 }} color="#241d19"  /> {/*left eye*/}
-                    {/*<Eye translate={{ x: 2.2, z: 6.8 }} /> right eye*/}
-                    <a.Ellipse stroke={0.3} diameter={3} quarters={1} translate={{ x: 2.2, y: -3, z: 5 }} rotate={{ z: TAU / 3 }} color="#241d19"  /> {/*right eye*/}
-                    <a.Shape height={3} width={2} scale={size} translate={{ y: 2.5, z: 6.8 }} rotate={{ z: TAU / 4 }} closed color="#b08b74" stroke={6} fill /> {/*mouth*/}
-                    <a.Shape height={1.3} width={1} scale={size} translate={{ y: 2, z: 9 }} rotate={{ z: TAU / 4 }} closed color="#241d19" stroke={3} fill> {/*nose*/}
-                        <a.Ellipse height={.1} width={.05} translate={{ x: -.5, y: 0, z: 0 }} color="white" fill />
-                    </a.Shape>
-                    <a.Ellipse height={7} width={4} stroke={14} translate={{ x: 0, y: 13 }} color={color} fill /> {/*body*/}
-                    <a.Ellipse height={6} width={3} stroke={5} translate={{ x: 11, y: 10 }} rotate={{ z: TAU / 3 }} color={color_tint} fill /> {/*left arm*/}
-                    <a.Ellipse height={6} width={3} stroke={5} translate={{ x: -11, y: 10 }} rotate={{ z: TAU / -3 }} color={color_tint} fill /> {/*right arm*/}
-                    <a.Ellipse height={4} width={4} stroke={7} translate={{ x: 7, y: 23 }} color={color_tint} fill /> {/*left leg*/}
-                    <a.Ellipse height={4} width={4} stroke={7} translate={{ x: -7, y: 23 }} color={color_tint} fill /> {/*right leg*/}
-
+    return (
+        <a.Shape stroke={0} translate={{ y: 10 }}>
+            <a.Shape stroke={15} translate={{ y: 0, x: 10 }} rotate={{ z: TAU / 4, x: TAU / 4 }} color={color}> {/*head*/}
+                <a.Shape stroke={4} translate={{ x: -7, y: -4 }} color={color_tint} fill /> {/*left ear*/}
+                <a.Shape stroke={4} translate={{ x: 7, y: -4 }} color={color_tint} fill /> {/*right ear*/}
+                {/*<Eye /> left eye*/}
+                <a.Ellipse stroke={0.3} diameter={3} quarters={1} translate={{ x: -2.2, y: -3, z: 5 }} rotate={{ z: TAU / 3 }} color="#241d19" /> {/*left eye*/}
+                {/*<Eye translate={{ x: 2.2, z: 6.8 }} /> right eye*/}
+                <a.Ellipse stroke={0.3} diameter={3} quarters={1} translate={{ x: 2.2, y: -3, z: 5 }} rotate={{ z: TAU / 3 }} color="#241d19" /> {/*right eye*/}
+                <a.Shape height={3} width={2} scale={size} translate={{ y: 2.5, z: 6.8 }} rotate={{ z: TAU / 4 }} closed color="#b08b74" stroke={6} fill /> {/*mouth*/}
+                <a.Shape height={1.3} width={1} scale={size} translate={{ y: 2, z: 9 }} rotate={{ z: TAU / 4 }} closed color="#241d19" stroke={3} fill> {/*nose*/}
+                    <a.Ellipse height={.1} width={.05} translate={{ x: -.5, y: 0, z: 0 }} color="white" fill />
                 </a.Shape>
-                <a.Shape  stroke={0} ref={ref}>
-                    <a.Shape closed={false} stroke={1} color='#636' path={[{ x: -1, y: -2 }, // start at top left
-                        { x:  1, y: -2 }, // line to top right
-                        { x: -1, y:  2 }, // line to bottom left
-                        { x:  1, y:  2 }]}
-                             translate={{x: -20, y: 1.5, z: 15}}
-                             rotate={{ y: TAU / 3 }}
-                    />
-                    <a.Shape closed={false} stroke={1.6} color='#636' path={[{ x: -1, y: -3 }, // start at top left
-                        { x:  1, y: -3 }, // line to top right
-                        { x: -1, y:  3 }, // line to bottom left
-                        { x:  1, y:  3 }]}
-                             translate={{x: 20, y: 1.5, z: 20}}
-                    />
-                    <a.Shape closed={false} stroke={2} color='#636' path={[{ x: -1, y: -3 }, // start at top left
-                        { x:  1, y: -3 }, // line to top right
-                        { x: -1, y:  3 }, // line to bottom left
-                        { x:  1, y:  3 }]}
-                             translate={{x: 0, y: -15, z: -30}}
-                             rotate={{ y: TAU }}
-                    />
-                </a.Shape>
+                <a.Ellipse height={7} width={4} stroke={14} translate={{ x: 0, y: 13 }} color={color} fill /> {/*body*/}
+                <a.Ellipse height={6} width={3} stroke={5} translate={{ x: 11, y: 10 }} rotate={{ z: TAU / 3 }} color={color_tint} fill /> {/*left arm*/}
+                <a.Ellipse height={6} width={3} stroke={5} translate={{ x: -11, y: 10 }} rotate={{ z: TAU / -3 }} color={color_tint} fill /> {/*right arm*/}
+                <a.Ellipse height={4} width={4} stroke={7} translate={{ x: 7, y: 23 }} color={color_tint} fill /> {/*left leg*/}
+                <a.Ellipse height={4} width={4} stroke={7} translate={{ x: -7, y: 23 }} color={color_tint} fill /> {/*right leg*/}
 
             </a.Shape>
-        )
+            <a.Shape stroke={0} ref={ref}>
+                <a.Shape closed={false} stroke={1} color='#636' path={[{ x: -1, y: -2 }, // start at top left
+                { x: 1, y: -2 }, // line to top right
+                { x: -1, y: 2 }, // line to bottom left
+                { x: 1, y: 2 }]}
+                    translate={{ x: -20, y: 1.5, z: 15 }}
+                    rotate={{ y: TAU / 3 }}
+                />
+                <a.Shape closed={false} stroke={1.6} color='#636' path={[{ x: -1, y: -3 }, // start at top left
+                { x: 1, y: -3 }, // line to top right
+                { x: -1, y: 3 }, // line to bottom left
+                { x: 1, y: 3 }]}
+                    translate={{ x: 20, y: 1.5, z: 20 }}
+                />
+                <a.Shape closed={false} stroke={2} color='#636' path={[{ x: -1, y: -3 }, // start at top left
+                { x: 1, y: -3 }, // line to top right
+                { x: -1, y: 3 }, // line to bottom left
+                { x: 1, y: 3 }]}
+                    translate={{ x: 0, y: -15, z: -30 }}
+                    rotate={{ y: TAU }}
+                />
+            </a.Shape>
+
+        </a.Shape>
+    )
 }
 
 function PetBear() {
@@ -322,14 +324,15 @@ function Bear(props) {
         bear = PlayBear();
         return bear;
     } else if (templateStore.eatBool) {
-
+        bear = FeedBear();
+        return bear;
     } else if (templateStore.sleepBool) {
         bear = SleepBear();
         return bear;
     } else if (templateStore.cleanBool) {
 
     } else if (templateStore.breatheBool) {
-        bear = FeedBear();
+        bear = BreatheBear();
         return bear;
     } else if (templateStore.petBool) {
 
