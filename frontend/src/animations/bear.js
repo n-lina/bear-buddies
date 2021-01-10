@@ -187,23 +187,30 @@ function BreatheBear() {
     const [up, setUp] = useState(true)
 
     useInterval(() => {
-        setUp(!up);
-        console.log("up is ", up);
+        setUp(!up)
     }, 450);
 
-    const tummy = up ? 14 : 16;
-    const tummyWidth = up ? 4 : 7;
+    const leftArm = up ? 3 : 6;
+    const leftLeg = up ? 1 : 3;
+    const rightArm = up ? -3 : -6;
+    const rightLeg = up ? 1 : -3;
 
+    const tummy = up ? 4 : 15;
+
+    // const { rotation, color, color_tint, size } = useSpring({ size: up ? 1.2 : 0.2, color: up ? '#7a5843' : '#7a5843', color_tint: up ? '#7b6044' : '#7b6044', rotation: up ? 0 : Math.PI });
     const size = 1.2;
     const color = "#7a5843"
     const color_tint = "#7b6044"
+    const rotation = 0;
+    // const { rotation, color, size } = useSpring({ size: up ? 1.2 : bbb, color: up ? '#EA0' : aaa, rotation: up ? 0 : ccc })
+    const { la, ll, ra, rl } = useSpring({ la: up ? 3 : leftArm, ll: up ? 0 : leftLeg, ra: up ? -3 : rightArm, rl: up ? 0 : rightLeg });
 
     const ref = useRef()
     let t = 0
     useRender(() => (ref.current.rotate.y = Math.cos((t += 0.1) / TAU)));
 
     return (
-        <a.Shape ref={ref} stroke={15} translate={{ y: -9.5 }} color={up ? color : "white"}> {/*head*/}
+        <a.Shape ref={ref} stroke={15} translate={{ y: -9.5 }} color={color}> {/*head*/}
             <a.Shape ref={ref} stroke={4} translate={{ x: -7, y: -4 }} color={color_tint} fill /> {/*left ear*/}
             <a.Shape ref={ref} stroke={4} translate={{ x: 7, y: -4 }} color={color_tint} fill /> {/*right ear*/}
             {/*<Eye /> left eye*/}
@@ -216,7 +223,7 @@ function BreatheBear() {
             </a.Shape>
             <Ellipse diameter={1} translate={{ x: -3.5, y: 1.5, z: 6.5 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.5} fill /> {/*left blush*/}
             <Ellipse diameter={1} translate={{ x: 3.5, y: 1.5, z: 6.5 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.5} fill /> {/*left right*/}
-            <a.Ellipse height={7} width={up ? 4 : tummyWidth} ref={ref} stroke={up ? 14 : tummy} translate={{ x: 0, y: 13 }} color={color} fill /> {/*body*/}
+            <a.Ellipse height={7} width={4} ref={ref} stroke={up ? 14 : tummy} translate={{ x: 0, y: 13 }} color={color} fill /> {/*body*/}
             <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: 11, y: 10 }} rotate={{ z: TAU / 3 }} color={color_tint} fill /> {/*left arm*/}
             <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: -11, y: 10 }} rotate={{ z: TAU / -3 }} color={color_tint} fill /> {/*right arm*/}
             <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: 6, y: 23 }} rotate={{ z: TAU / 1 }} color={color_tint} fill /> {/*left leg*/}
@@ -246,18 +253,18 @@ function Bear(props) {
     if (templateStore.healthBool) {
         bear = PlayBear();
         return bear;
-    } if (templateStore.eatBool) {
+    } else if (templateStore.eatBool) {
         bear = FeedBear();
         return bear;
-    } if (templateStore.sleepBool) {
+    } else if (templateStore.sleepBool) {
 
-    } if (templateStore.cleanBool) {
+    } else if (templateStore.cleanBool) {
 
-    } if (templateStore.breatheBool) {
+    } else if (templateStore.breatheBool) {
         console.log('template store is: ', templateStore.breatheBool);
         bear = BreatheBear();
         return bear;
-    } if (templateStore.petBool) {
+    } else if (templateStore.petBool) {
 
     } else {
         bear = NormalBear();
