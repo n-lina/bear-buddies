@@ -57,7 +57,7 @@ class SignIn extends React.Component {
   handleSubmit(event) {
     auth.signInWithEmailAndPassword(this.state.email, this.state.pass)
       .then((user) => {
-        console.log('ok');
+        
       })
       .catch((error) => {
         console.log(error);
