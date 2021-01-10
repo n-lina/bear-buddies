@@ -99,6 +99,7 @@ function Guy(props) {
 const MainPage = () => {
   const { templateStore } = useStores()
   const zdogRef = useRef()
+  const [lookup, setLookup] = useState(false)
 
   const getData = () => {
     auth.onAuthStateChanged((user) => {
@@ -108,6 +109,7 @@ const MainPage = () => {
           url: `/api/${user.uid}`
         }).then((res) => {
           console.log(res.data);
+          setLookup(true);
         }).catch((err) => {
           console.log(err);
         });
@@ -115,9 +117,37 @@ const MainPage = () => {
     });
   };
 
+  const updateData = () => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        axios({
+          method: 'put',
+          url: '/api/',
+          data: {
+            requesterID: `${user.uid}`,
+            level: 1,
+            experience: 0,
+            animalName: "Odie",
+            hunger: 0,
+            happiness: 100,
+            cleanliness: 100,
+            energy: 100,
+            calmness: 100,
+            health: 100
+          }
+        });
+      }
+    });
+  }
+
   useEffect(() => {
     console.log('here');
-    getData();
+    if (!lookup) {
+      getData();
+    }
+    else {
+      updateData();
+    }
   }, []);
 
   return (
