@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { auth } from '../firebase';
+import axios from 'axios';
 
 const styles = (theme) => ({
   paper: {
@@ -57,7 +58,7 @@ class SignIn extends React.Component {
   handleSubmit(event) {
     auth.signInWithEmailAndPassword(this.state.email, this.state.pass)
       .then((user) => {
-        console.log('ok');
+
       })
       .catch((error) => {
         console.log(error);
