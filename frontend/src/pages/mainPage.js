@@ -5,6 +5,11 @@ import { Illustration, Ellipse, Shape, RoundedRect, useRender } from 'react-zdog
 import { a, useSpring } from 'react-spring/zdog';
 import Bear from './../animations/bear';
 import {useStores} from "../models/RootStoreContext"
+import { exportComponentAsPNG } from 'react-component-export-image';
+import { IoShirt } from "react-icons/io5";
+import { FaCameraRetro } from "react-icons/fa";
+import { MdInfo } from "react-icons/md";
+import {observer} from "mobx-react"
 
 /** --- Basic, re-usable shapes -------------------------- */
 const TAU = Math.PI * 2
@@ -55,9 +60,9 @@ function Guy(props) {
     setUp(!up)
   }, 450);
   // Turn static values into animated values
-  const aaa = templateStore.eat ? 'tomato' : '#EA0'
-  const bbb = templateStore.eat ? 0.2 : 1.2
-  const ccc = templateStore.eat ? Math.PI : 0
+  const aaa = templateStore.eatBool ? 'tomato' : '#EA0'
+  const bbb = templateStore.eatBool ? 0.2 : 1.2
+  const ccc = templateStore.eatBool ? Math.PI : 0
 
   const { rotation, color, size } = useSpring({ size: up ? 1.2 : bbb, color: up ? '#EA0' : aaa, rotation: up ? 0 : ccc })
   // useRender allows us to hook into the render-loop
@@ -90,51 +95,56 @@ function Guy(props) {
 
 const MainPage = () => {
   const {templateStore} = useStores()
-  console.log(templateStore.eat)
+  const zdogRef = useRef()
 
   return (
     <div className="main">
       <div className="leftSide">
         <div className="level">
           <p className="label"> Level </p>
+          <div className="level-left-ear"></div>
+          <div className="level-right-ear"></div>
           <div className="level-circle">{templateStore.level}</div>
-          <ProgressBar completed={templateStore.levelProgress}  labelSize	={0}  />
+          <div className = "bar-level"><ProgressBar completed={templateStore.levelProgress}  labelSize	={0} width="91%" /></div>
         </div>
         <div className="vitals">
           <p className="label">Fullness</p>
-          <ProgressBar completed={templateStore.full}  labelSize	={0} />
+          <div className = "bar"><ProgressBar completed={templateStore.full}  labelSize	={0}  width="92%" /></div>
           <p className="label">Cleanliness</p>
-          <ProgressBar completed={templateStore.clean}  labelSize	={0} />
+          <div className = "bar"><ProgressBar completed={templateStore.clean}  labelSize	={0}  width="92%" /></div>
           <p className="label">Energy</p>
-          <ProgressBar completed={templateStore.energy}  labelSize	={0} />
+          <div className = "bar"><ProgressBar completed={templateStore.energy}  labelSize	={0}  width="92%" /></div>
           <p className="label">Happiness</p>
-          <ProgressBar completed={templateStore.happy} labelSize	={0}  />
+          <div className = "bar"><ProgressBar completed={templateStore.happy} labelSize	={0}  width="92%"  /></div>
           <p className="label">Calmness</p>
-          <ProgressBar completed={templateStore.calm} labelSize	={0}  />
+          <div className = "bar"><ProgressBar completed={templateStore.calm} labelSize	={0}  width="92%"  /></div>
           <p className="label">Health</p>
-          <ProgressBar completed={templateStore.health} labelSize	={0} />
+          <div className = "bar"><ProgressBar completed={templateStore.health} labelSize	={0}  width="92%" /></div>
         </div>
         <div className="userToolbar">
-          <div className="icon">Camera</div>
-          <div className="icon">Accessories</div>
+          <div className="icon" onClick={() => exportComponentAsPNG(zdogRef)}><FaCameraRetro size={50}/></div>
+          <div className="icon" onClick={() => console.log("hi")}><IoShirt size={50}/></div>
+          <div className="icon" onClick={() => console.log("hi")}><MdInfo size={50}/></div>
         </div>
       </div>
-      <div className="zdog">
-        <Illustration zoom={8}>
-            <Ellipse diameter={20} rotate={{ x: -TAU / 3 }} translate={{ y: 15, z: -100 }} stroke={4} color="#373740" fill />
-            <Guy templateStore={templateStore}/>
-        </Illustration>
+      <div className="zdog" ref={zdogRef}>
+          <Illustration zoom={8}>
+              <Ellipse diameter={20} rotate={{ x: -TAU / 3 }} translate={{ y: 15, z: -100 }} stroke={4} color="#373740" fill />
+              <Guy templateStore={templateStore}/>
+          </Illustration>
+        <div className="name">Name</div>
       </div>
       <div className="rightSide">
-        <div className="control" onClick={() => templateStore.setEat(!templateStore.eat)}>Feed</div>
-        <div className="control">Bathe</div>
-        <div className="control">Play</div>
-        <div className="control">Sleep</div>
-        <div className="control">Breate</div>
-        <div className="control">Pet</div>
+        <div className="date">Date</div>
+        <div className="control" onClick={() => templateStore.handleEat(!templateStore.eatBool)}>Feed</div>
+        <div className="control" onClick={() => templateStore.handleClean(!templateStore.cleanBool)}>Bathe</div>
+        <div className="control" onClick={() => templateStore.handlePlay(!templateStore.healthBool)}>Play</div>
+        <div className="control" onClick={() => templateStore.handleSleep(!templateStore.sleepBool)}>Sleep</div>
+        <div className="control" onClick={() => templateStore.handleBreathe(!templateStore.breatheBool)}>Breathe</div>
+        <div className="control" onClick={() => templateStore.handlePet(!templateStore.petBool)}>Pet</div>
       </div>
     </div>
   );
 };
 
-export default MainPage;
+export default observer(MainPage);
