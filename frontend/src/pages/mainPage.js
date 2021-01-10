@@ -120,6 +120,7 @@ const MainPage = () => {
           templateStore.setLvlProgress(res.data.experience)
           setLookup(true);
         }).catch((err) => {
+          templateStore.setName('Odie');
           console.log(err);
         });
       }
@@ -215,7 +216,7 @@ const MainPage = () => {
         </Illustration>
         <div className="name">
           <div className="inner-name">
-              <p className = "nametag">Odie</p>
+              <p className = "nametag">{templateStore.name} the Bear 🤍</p>
           </div>
         </div>
       </div>

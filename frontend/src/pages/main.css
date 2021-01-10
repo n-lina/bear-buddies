@@ -28,7 +28,6 @@
     background: #CC9D55;
     margin: 0px;
     border-radius:30px;
-
 }
 
 .userToolbar {
@@ -95,7 +94,7 @@
     color: rgb(230, 230, 230);
     display: flex;
     justify-content: center;
-    padding-top: 4%;
+    align-items: center;
     border-radius:40px;
     border-style:solid;
     border-color: rgba(100, 84, 44, 0.438);
@@ -108,7 +107,15 @@
     border-radius: 20px;
     margin-right: 15%;
     margin-left: 15%;
-    margin-bottom: 2%
+    margin-bottom: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: rgba(54, 45, 22, 0.438);
+    border-radius:40px;
+    border-style:solid;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 5px rgb(255, 255, 255);
 }
 
 .label {
