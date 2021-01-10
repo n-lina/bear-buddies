@@ -62,23 +62,6 @@ function Guy(props) {
     setUp(!up)
   }, 450);
 
-  const getData = () => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        axios({
-          method: 'post',
-          url: `/api/${user.uid}`
-        }).then((res) => {
-          console.log(res.data);
-        });
-      }
-    });
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   // Turn static values into animated values
   const aaa = templateStore.eatBool ? 'tomato' : '#EA0'
   const bbb = templateStore.eatBool ? 0.2 : 1.2
@@ -116,6 +99,26 @@ function Guy(props) {
 const MainPage = () => {
   const { templateStore } = useStores()
   const zdogRef = useRef()
+
+  const getData = () => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        axios({
+          method: 'post',
+          url: `/api/${user.uid}`
+        }).then((res) => {
+          console.log(res.data);
+        }).catch((err) => {
+          console.log(err);
+        });
+      }
+    });
+  };
+
+  useEffect(() => {
+    console.log('here');
+    getData();
+  }, []);
 
   return (
     <div className="main">
