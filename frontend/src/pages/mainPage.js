@@ -162,42 +162,42 @@ const MainPage = () => {
     <div className="main">
       <div className="leftSide">
         <div className="level">
-          <div style={{height: 15}}></div>
+          <div style={{ height: 15 }}></div>
           <p className="label-top"> level </p>
           <div className="level-left-ear"></div>
           <div className="level-right-ear"></div>
           <div className="level-circle">
-            <p style={{fontWeight: 'bold', color: 'brown',textAlign: 'center',marginTop: 5,marginLeft:5, fontSize: 17, borderStyle: 'solid', borderColor: 'brown', borderRadius: 30, height: 30, width: 30}}>
-              <p style={{marginTop: 3}}>{templateStore.level}</p>
+            <p style={{ fontWeight: 'bold', color: 'brown', textAlign: 'center', marginTop: 5, marginLeft: 5, fontSize: 17, borderStyle: 'solid', borderColor: 'brown', borderRadius: 30, height: 30, width: 30 }}>
+              <p style={{ marginTop: 3 }}>{templateStore.level}</p>
             </p>
           </div>
           <div className="bar-level"><ProgressBar completed={templateStore.levelProgress} labelSize="0" width="91%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} /></div>
         </div>
         <div className="vitals">
-          <div style={{height: 7}}></div>
+          <div style={{ height: 7 }}></div>
           <p className="label">— fullness —</p>
-          <div style={{height: 7}}></div>
-          <div className="bar"><ProgressBar completed={templateStore.full} labelSize="0"  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
-          <div style={{height: 7}}></div>
+          <div style={{ height: 7 }}></div>
+          <div className="bar"><ProgressBar completed={templateStore.full} labelSize="0" width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
+          <div style={{ height: 7 }}></div>
           <p className="label">— cleanliness —</p>
-          <div style={{height: 7}}></div>
-          <div className="bar"><ProgressBar completed={templateStore.clean} labelSize="0"  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
-          <div style={{height: 7}}></div>
+          <div style={{ height: 7 }}></div>
+          <div className="bar"><ProgressBar completed={templateStore.clean} labelSize="0" width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
+          <div style={{ height: 7 }}></div>
           <p className="label">— energy —</p>
-          <div style={{height: 7}}></div>
-          <div className="bar"><ProgressBar completed={templateStore.energy} labelSize="0"  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
-          <div style={{height: 7}}></div>
+          <div style={{ height: 7 }}></div>
+          <div className="bar"><ProgressBar completed={templateStore.energy} labelSize="0" width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
+          <div style={{ height: 7 }}></div>
           <p className="label">— happiness —</p>
-          <div style={{height: 7}}></div>
-          <div className="bar"><ProgressBar completed={templateStore.happy} labelSize="0"  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
-          <div style={{height: 7}}></div>
+          <div style={{ height: 7 }}></div>
+          <div className="bar"><ProgressBar completed={templateStore.happy} labelSize="0" width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
+          <div style={{ height: 7 }}></div>
           <p className="label">— calmness —</p>
-          <div style={{height: 7}}></div>
-          <div className="bar"><ProgressBar completed={templateStore.calm} labelSize="0"  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
-          <div style={{height: 7}}></div>
+          <div style={{ height: 7 }}></div>
+          <div className="bar"><ProgressBar completed={templateStore.calm} labelSize="0" width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
+          <div style={{ height: 7 }}></div>
           <p className="label">— health —</p>
-          <div style={{height: 7}}></div>
-          <div className="bar"><ProgressBar completed={templateStore.health} labelSize="0"  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
+          <div style={{ height: 7 }}></div>
+          <div className="bar"><ProgressBar completed={templateStore.health} labelSize="0" width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
         </div>
         <div className="userToolbar">
           <div className="icon" onClick={() => exportComponentAsPNG(zdogRef)}><FaCameraRetro size={50} color="#3D2A02" /></div>
@@ -206,7 +206,7 @@ const MainPage = () => {
         </div>
       </div>
       <div className="zdog" ref={zdogRef}>
-        <Illustration zoom={8}>
+        <Illustration zoom={8} dragRotate={true}>
           {/* <Ellipse diameter={7} rotate={{ x: -TAU / 3 }} translate={{ y: 15, z: -100 }} stroke={4} color="#373740" fill /> */}
           <Bear templateStore={templateStore} />
         </Illustration>
