@@ -21,7 +21,7 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    hunger: {
+    fullness: {
         type: Number,
         required: false,
     },
@@ -32,6 +32,18 @@ const userSchema = new Schema({
     cleanliness: {
         type: Number,
         required: true,
+    },
+    energy: {
+        type: Number,
+        required: true
+    },
+    calmness: {
+        type: Number,
+        required: true
+    },
+    health: {
+        type: Number,
+        required: true
     },
     lastLoggedIn: {
         type: Number,

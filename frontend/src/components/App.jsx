@@ -10,6 +10,8 @@ import {RootStoreProvider} from "../models/RootStoreContext"
 import { auth } from "../firebase"
 import PrivateRoute from "../components/PrivateRoute"
 import PublicRoute from "./PublicRoute"
+import bear from "../assets/bear.jpg";
+
 
 
 const rootStore = RootStore.create()
@@ -37,17 +39,17 @@ class App extends Component {
           loading: false,
         });
       }
-    })
+    });
   }
 
   render() {
     return this.state.loading === true ? <h2>Loading...</h2> : (
-      <div>
+      <div style={{backgroundImage: `url(${bear})`, height: '100%'}}>
         <RootStoreProvider value={rootStore}>
           <Router>
             <Switch>
-              <PublicRoute path='/signin' component={SignIn} authenticated={this.state.authenticated} exact={true}/>
-              <PublicRoute path='/signup' component={SignUp} authenticated={this.state.authenticated} exact={true}/>
+              <PublicRoute path='/signin' component={SignIn} authenticated={this.state.authenticated} exact={true} user={this.state.user}/>
+              <PublicRoute path='/signup' component={SignUp} authenticated={this.state.authenticated} exact={true} user={this.state.user}/>
               <PrivateRoute path='/' component={Home} authenticated={this.state.authenticated} user={this.state.user}/>
             </Switch>
           </Router>

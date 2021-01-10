@@ -4,14 +4,17 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Link } from 'react-router-dom';
 import { auth } from '../firebase';
+import axios from 'axios';
+import bear2 from "../assets/bear2.jpg"
+
 
 const styles = (theme) => ({
   paper: {
@@ -38,11 +41,13 @@ class SignUp extends React.Component {
     super(props)
     this.state = {
       email: '',
-      pass: ''
+      pass: '',
+      animal: ''
     }
 
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePass = this.handlePass.bind(this);
+    this.handleAnimal = this.handleAnimal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -54,12 +59,29 @@ class SignUp extends React.Component {
     this.setState({pass: event.target.value});
   }
 
+  handleAnimal(event) {
+    this.setState({animal: event.target.value});
+  }
+
   handleSubmit(event) {
-    console.log(this.state.email)
-    console.log(this.state.pass);
     auth.createUserWithEmailAndPassword(this.state.email, this.state.pass)
       .then((user) => {
-        console.log(user);
+        axios({
+          method: 'post',
+          url: '/api/',
+          data: {
+            requesterID: user.user.uid,
+            level: 1,
+            experience: 0,
+            animalName: this.state.animal,
+            fullness: 100,
+            happiness: 100,
+            cleanliness: 100,
+            energy: 100,
+            calmness: 100,
+            health: 100
+          }
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -70,9 +92,11 @@ class SignUp extends React.Component {
   render() {
     const { classes } = this.props;
     return (
+      <div>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <div className={classes.paper}>
+        <br/>
+        <div className={classes.paper} style={{backgroundColor: 'rgba(255,255,255,0.6)', padding:'25px', borderRadius:'20px'}}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
@@ -104,6 +128,16 @@ class SignUp extends React.Component {
               autoComplete="current-password"
               onChange={this.handlePass}
             />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="animal name"
+              label="Animal Name"
+              id="animal"
+              onChange={this.handleAnimal}
+            />
             <Button
               type="submit"
               fullWidth
@@ -115,7 +149,7 @@ class SignUp extends React.Component {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2">
+              <Link to='/signin'>
                   {"Have an account? Sign In"}
                 </Link>
               </Grid>
@@ -125,6 +159,7 @@ class SignUp extends React.Component {
         <Box mt={8}>
         </Box>
       </Container>
+      </div>
     );
   }
 }

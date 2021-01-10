@@ -4,14 +4,21 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Link } from 'react-router-dom';
 import { auth } from '../firebase';
+import forest1 from "../assets/forest.jpg"
+import forest2 from "../assets/fall-forest.jpg"
+import forest3 from "../assets/forest1.jpg"
+import forest4 from "../assets/forest2.png"
+import forest5 from "../assets/night.jpg"
+import bear from "../assets/bear.jpg"
+import bear2 from "../assets/bear2.jpg"
 
 const styles = (theme) => ({
   paper: {
@@ -57,7 +64,7 @@ class SignIn extends React.Component {
   handleSubmit(event) {
     auth.signInWithEmailAndPassword(this.state.email, this.state.pass)
       .then((user) => {
-        console.log('ok');
+        
       })
       .catch((error) => {
         console.log(error);
@@ -68,9 +75,11 @@ class SignIn extends React.Component {
   render() {
     const { classes } = this.props;
     return (
+      <div style={{backgroundImage: `url(${bear})`, height: '500px'}}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <div className={classes.paper}>
+        <br/>
+        <div className={classes.paper} style={{backgroundColor: 'rgba(255,255,255,0.6)', padding:'25px', borderRadius:'20px'}}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
@@ -113,7 +122,7 @@ class SignIn extends React.Component {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link to='/signup'>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -123,6 +132,7 @@ class SignIn extends React.Component {
         <Box mt={8}>
         </Box>
       </Container>
+      </div>
     );
   }
 }

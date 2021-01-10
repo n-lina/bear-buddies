@@ -5,7 +5,7 @@
 
 .leftSide {
     height: 98%;
-    background:  #E3CA9D; 
+    /* background:  #E3CA9D;  */
     float: left; 
     width: 24%;
     border-radius:30px;
@@ -24,16 +24,15 @@
     }
 
 .vitals {
-    height: 60%; 
+    height: 62%; 
     background: #CC9D55;
     margin: 0px;
     border-radius:30px;
-
 }
 
 .userToolbar {
     margin-top: 2%;
-    height: 16%; 
+    height: 15%; 
     /* background: #E3CA9D; */
     border-radius:30px;
     background:#F3DD79;
@@ -44,7 +43,7 @@
 }
 
 .zdog {
-    height: 86%;
+    height: 84%;
     float: left;
     width: 45%;
     margin-top: 0.5%;
@@ -54,7 +53,7 @@
 }
 
 .rightSide{
-    height: 98%;
+    height: 97%;
     float: right;
     width: 29%;
     background: #CC9D55;
@@ -67,35 +66,112 @@
     justify-content: center;
 }
 
+.rightButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: baseline;
+}
+
 .control {
-    float: left; 
-    width: 45%;
-    height: 28%;
+    width: 40%;
     margin: 1%;
+    text-align: center;
+    line-height: 6.5em;
     background: #F3DD79;
     border-radius:40px;
     border-style:solid;
     border-color: goldenrod;
+    box-shadow: 10px 10px 4px rgb(87, 87, 87);
+    color: rgb(136, 39, 39);
+    transition: 0.2s;
+}
+
+.control:hover {
+    background: #D0BB65;
+    box-shadow: 0 0;
+    transition: 0.5s;
 }
 
 .date{
-    height: 10%;
+    width: 80%;
+    line-height: 2em;
     background: #836A3D; 
     border-radius: 30px;
-    margin: 2% 2% 0% 2% ;
+    margin: 2% 2%;
+    color: rgb(230, 230, 230);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:40px;
+    border-style:solid;
+    border-color: rgba(100, 84, 44, 0.438);
+    box-shadow: 5px 5px 2px rgb(87, 87, 87);
+}
+
+.logout{
+    width: 80%;
+    line-height: 2em;
+    background: #836A3D; 
+    border-radius: 30px;
+    margin: 2% 2% 2% 2%;
+    color: rgb(230, 230, 230);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:40px;
+    border-style:solid;
+    border-color: rgba(100, 84, 44, 0.438);
+    box-shadow: 5px 5px 4px rgb(87, 87, 87);
+    transition: 0.2s;
+}
+
+.logout:hover{
+    background: #70592C;
+    box-shadow: 2px 2px 1px rgb(87, 87, 87);
+    transition: 0.5s;
 }
 
 .name{
     height: 13%;
     background: #836A3D; 
     border-radius: 20px;
-    margin-right: 15%;
-    margin-left: 15%;
-    margin-bottom: 2%
+    /* margin-right: 15%;
+    margin-left: 15%; */
+    margin-bottom: 2%;
+    display: inline-block;
+    width: 250px;
+    align-items: center;
+    justify-content: center;
+    border-color: rgba(54, 45, 22, 0.438);
+    border-radius:40px;
+    border-style:solid;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 5px rgb(255, 255, 255);
+    vertical-align: top;
 }
 
 .label {
-    margin: 1%;
+    margin: 0%;
+    font-family: Arial;
+    color: brown;
+    letter-spacing: 5px;
+    border-radius: 30px;
+    width: 200px;
+    display: inline-block;
+}
+
+.label-top {
+    margin: 0%;
+    font-family: Arial;
+    color: palegoldenrod;
+    letter-spacing: 5px;
+    /* background:#8B6829; */
+    border-radius: 30px;
+    width: 200px;
+    display: inline-block;
+    
+    /* background: pink; */
 }
 
 .icon {
@@ -144,4 +220,63 @@
 .bar-level {
     margin-top: 20px;
     margin-left: 45px;
+}
+
+.access {
+    position: absolute; 
+    border-radius: 30px;
+    border-style: solid;
+    border-color: brown;
+    height: 400px; 
+    width: 500px;
+    margin-left: 10px;
+    z-index: 5;
+    background: white;
+    text-align: center;
+}
+
+.badge{
+    width: 50px;
+    height: 50px; 
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-left: 15px;
+    float: left;
+    border-style: solid;
+    border-color: white;
+}
+
+.label-a {
+    display: inline-block;
+    font-family: Arial;
+    color: brown;
+    letter-spacing: 5px;
+    border-radius: 30px;
+    width: 200px;
+    display: inline-block;
+    margin: 15px;
+    margin-left: -100px;
+    position: absolute
+}
+
+/* .inner-name{
+    background: palegoldenrod
+} */
+
+.icons{
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin-top: 7px;
+}
+
+.iconbg{
+    background: white; 
+    border-radius: 30px;
+    width: 60px; 
+    height: 60px; 
+    margin: 8px;
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
 }
