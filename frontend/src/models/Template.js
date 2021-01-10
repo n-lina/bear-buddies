@@ -56,14 +56,14 @@ const Template = types
       }
     },
     handleBreathe(val) {
-      self.calmBool = val
+      self.breatheBool = val
       if (val) {
         self.calm += 10
         self.checkLevelUp()
       }
     },
     handlePet(val) {
-      self.happyBool = val
+      self.petBool = val
       if (val) {
         self.happy += 10
         self.checkLevelUp()
