@@ -4,12 +4,12 @@ import ProgressBar from '@ramonak/react-progress-bar';
 import { Illustration, Ellipse, Shape, RoundedRect, useRender } from 'react-zdog'
 import { a, useSpring } from 'react-spring/zdog';
 import Bear from './../animations/bear';
-import {useStores} from "../models/RootStoreContext"
+import { useStores } from "../models/RootStoreContext"
 import { exportComponentAsPNG } from 'react-component-export-image';
 import { IoShirt } from "react-icons/io5";
 import { FaCameraRetro } from "react-icons/fa";
 import { MdInfo } from "react-icons/md";
-import {observer} from "mobx-react"
+import { observer } from "mobx-react"
 
 /** --- Basic, re-usable shapes -------------------------- */
 const TAU = Math.PI * 2
@@ -52,7 +52,7 @@ function useInterval(callback, delay) {
 /** --- Assembly ----------------------------------------- */
 function Guy(props) {
   // Change motion every second
-  const {templateStore} = props
+  const { templateStore } = props
 
   const [up, setUp] = useState(true)
   // useEffect(() => void setInterval(() => setUp(previous => !previous), 450), [])
@@ -94,7 +94,7 @@ function Guy(props) {
 }
 
 const MainPage = () => {
-  const {templateStore} = useStores()
+  const { templateStore } = useStores()
   const zdogRef = useRef()
 
   return (
@@ -105,33 +105,33 @@ const MainPage = () => {
           <div className="level-left-ear"></div>
           <div className="level-right-ear"></div>
           <div className="level-circle">{templateStore.level}</div>
-          <div className = "bar-level"><ProgressBar completed={templateStore.levelProgress} labelSize={0} width="91%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} /></div>
+          <div className="bar-level"><ProgressBar completed={templateStore.levelProgress} labelSize="0" width="91%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} /></div>
         </div>
         <div className="vitals">
           <p className="label">Fullness</p>
-          <div className = "bar"><ProgressBar completed={templateStore.full}  labelSize	={0}  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px"/></div>
+          <div className="bar"><ProgressBar completed={templateStore.full} labelSize="0"  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
           <p className="label">Cleanliness</p>
-          <div className = "bar"><ProgressBar completed={templateStore.clean}  labelSize	={0}  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"}  height="15px"/></div>
+          <div className="bar"><ProgressBar completed={templateStore.clean} labelSize="0"  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
           <p className="label">Energy</p>
-          <div className = "bar"><ProgressBar completed={templateStore.energy}  labelSize	={0}  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px"/></div>
+          <div className="bar"><ProgressBar completed={templateStore.energy} labelSize="0"  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
           <p className="label">Happiness</p>
-          <div className = "bar"><ProgressBar completed={templateStore.happy} labelSize	={0}  width="92%"  bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px"/></div>
+          <div className="bar"><ProgressBar completed={templateStore.happy} labelSize="0"  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
           <p className="label">Calmness</p>
-          <div className = "bar"><ProgressBar completed={templateStore.calm} labelSize	={0}  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px"/></div>
+          <div className="bar"><ProgressBar completed={templateStore.calm} labelSize="0"  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
           <p className="label">Health</p>
-          <div className = "bar"><ProgressBar completed={templateStore.health} labelSize	={0}  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px"/></div>
+          <div className="bar"><ProgressBar completed={templateStore.health} labelSize="0"  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
         </div>
         <div className="userToolbar">
-          <div className="icon" onClick={() => exportComponentAsPNG(zdogRef)}><FaCameraRetro size={50}/></div>
-          <div className="icon" onClick={() => console.log("hi")}><IoShirt size={50}/></div>
-          <div className="icon" onClick={() => console.log("hi")}><MdInfo size={50}/></div>
+          <div className="icon" onClick={() => exportComponentAsPNG(zdogRef)}><FaCameraRetro size={50} /></div>
+          <div className="icon" onClick={() => console.log("hi")}><IoShirt size={50} /></div>
+          <div className="icon" onClick={() => console.log("hi")}><MdInfo size={50} /></div>
         </div>
       </div>
       <div className="zdog" ref={zdogRef}>
-          <Illustration zoom={8}>
-              <Ellipse diameter={20} rotate={{ x: -TAU / 3 }} translate={{ y: 15, z: -100 }} stroke={4} color="#373740" fill />
-              <Guy templateStore={templateStore}/>
-          </Illustration>
+        <Illustration zoom={8}>
+          {/* <Ellipse diameter={20} rotate={{ x: -TAU / 3 }} translate={{ y: 15, z: -100 }} stroke={4} color="#373740" fill /> */}
+          <Bear templateStore={templateStore} />
+        </Illustration>
         <div className="name">Name</div>
       </div>
       <div className="rightSide">
