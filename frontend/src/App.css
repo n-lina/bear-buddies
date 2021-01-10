@@ -21,6 +21,23 @@
   border-radius: 30px;
 }
 
+.labell{
+  margin-top:  3px;
+  letter-spacing: 4px;
+  font-size: 26px;
+  color: brown
+}
+
+.labelbg{
+  background: palegoldenrod; 
+  height: 70%;
+  width: 40%;
+  border-radius: 30px;
+  display: inline-block;
+  margin-top: 5px;
+
+}
+
 .Background {
   background-color: #FFF5B2;
   position: absolute;
