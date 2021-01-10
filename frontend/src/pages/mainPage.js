@@ -10,6 +10,8 @@ import { IoShirt } from "react-icons/io5";
 import { FaCameraRetro } from "react-icons/fa";
 import { MdInfo } from "react-icons/md";
 import {observer} from "mobx-react"
+import axios from 'axios';
+import { auth } from "../firebase"
 
 /** --- Basic, re-usable shapes -------------------------- */
 const TAU = Math.PI * 2
@@ -59,6 +61,24 @@ function Guy(props) {
   useInterval(() => {
     setUp(!up)
   }, 450);
+
+  const getData = () => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        axios({
+          method: 'post',
+          url: `/api/${user.uid}`
+        }).then((res) => {
+          console.log(res.data);
+        });
+      }
+    });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   // Turn static values into animated values
   const aaa = templateStore.eatBool ? 'tomato' : '#EA0'
   const bbb = templateStore.eatBool ? 0.2 : 1.2

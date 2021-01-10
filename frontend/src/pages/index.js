@@ -11,7 +11,7 @@ const Home = () => {
       <Switch>
         <Route path='/else' component={Landing} />
         <Route path='/main' component={MainPage} />
-        <Route path='/' component={Landing}/>
+        <Route path='/' component={Landing} />
       </Switch>
     </div>
   </div>

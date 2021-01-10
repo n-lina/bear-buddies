@@ -2,7 +2,7 @@ const router = require('express').Router();
 let User = require('../models/user.model');
 
 // GET ALL TASKS
-router.get('/:id', (req, res) => {
+router.post('/:id', (req, res) => {
     User.findOne({requesterID: req.params.id})
         .then(user => res.json(user))
         .catch(err => res.status(400).json('Error: ' + err));
@@ -17,7 +17,10 @@ router.get('/:id', (req, res) => {
     "animalName": "Odie",
     "hunger": 0,
     "happiness": 100,
-    "cleanliness": 100
+    "cleanliness": 100,
+    "energy": 100,
+    "calmness": 100,
+    "health": 100
 }
 */
 router.post('/', (req, res) => {
@@ -29,6 +32,9 @@ router.post('/', (req, res) => {
     const hunger = req.body.hunger;
     const happiness = req.body.happiness;
     const cleanliness = req.body.cleanliness;
+    const energy = req.body.energy;
+    const calmness = req.body.calmness;
+    const health = req.body.health;
 
     const newUser = new User({
         requesterID: requesterID,
@@ -37,7 +43,10 @@ router.post('/', (req, res) => {
         animalName: animalName,
         hunger: hunger,
         happiness: happiness,
-        cleanliness: cleanliness
+        cleanliness: cleanliness,
+        energy: energy,
+        calmness: calmness,
+        health: health
     });
 
     newUser.save()

@@ -68,7 +68,10 @@ class SignUp extends React.Component {
             animalName: "Odie",
             hunger: 0,
             happiness: 100,
-            cleanliness: 100
+            cleanliness: 100,
+            energy: 100,
+            calmness: 100,
+            health: 100
           }
         });
       })
