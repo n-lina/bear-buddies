@@ -61,5 +61,14 @@
     margin: 10px;
     float: left;
     width: 30%;
+}
 
+.level-circle{
+    position: absolute;
+    margin-left: -20px;
+    margin-top: -10px;
+    border-radius: 30px;
+    background: pink;
+    width: 40px; 
+    height: 40px
 }
