@@ -13,7 +13,7 @@ import bear2 from "../assets/bear2.jpg"
 
 const Home = () => {
   return (
-  <div className="Background" style={{backgroundImage: `url(${forest3})`}}>
+  <div className="Background" style={{backgroundImage: `url(${forest4})`}}>
     <div className="header"> 
       <div style={{height: 4}}></div>
       <div className = "labelbg">
