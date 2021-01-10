@@ -53,9 +53,9 @@ function Bear(props) {
     }, 450);
 
     const leftArm = templateStore.healthBool ? 3 : 6;
-    const leftLeg = templateStore.healthBool ? 0 : 3;
+    const leftLeg = templateStore.healthBool ? 1 : 3;
     const rightArm = templateStore.healthBool ? -3 : -6;
-    const rightLeg = templateStore.healthBool ? 0 : -3;
+    const rightLeg = templateStore.healthBool ? 1 : -3;
 
     // const { rotation, color, color_tint, size } = useSpring({ size: up ? 1.2 : 0.2, color: up ? '#7a5843' : '#7a5843', color_tint: up ? '#7b6044' : '#7b6044', rotation: up ? 0 : Math.PI });
     const size = 1.2;
