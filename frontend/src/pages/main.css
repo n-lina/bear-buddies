@@ -6,17 +6,19 @@
     height: 100%;
     background: pink; 
     float: left; 
-    width: 30%;
+    width: 25%;
 }
 
 .level {
     height: 20%;
-    background: blue
+    background: blue; 
+    margin: 0px;
 }
 
 .vitals {
     height: 60%; 
     background: lightgreen;
+    margin: 0px;
 }
 
 .userToolbar {
@@ -28,7 +30,7 @@
     background: green;
     height: 90%;
     float: left;
-    width: 40%;
+    width: 45%;
     margin-top: 25px;
 }
 
@@ -46,4 +48,27 @@
     height: 32%;
     margin: 1%;
     background: red
+}
+
+.label {
+    margin: 0px;
+}
+
+.icon {
+    background: goldenrod;
+    height: 80%; 
+    margin-top: 10px; 
+    margin: 10px;
+    float: left;
+    width: 30%;
+}
+
+.level-circle{
+    position: absolute;
+    margin-left: -20px;
+    margin-top: -10px;
+    border-radius: 30px;
+    background: pink;
+    width: 40px; 
+    height: 40px
 }

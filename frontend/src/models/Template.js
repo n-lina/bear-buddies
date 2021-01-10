@@ -2,6 +2,15 @@ import { types } from "mobx-state-tree";
 
 const Template = types
   .model("Template", {
+    eat: false, 
+    full: 60, 
+    clean: 60, 
+    energy: 60, 
+    happy: 60, 
+    calm: 60, 
+    health: 60,
+    level: 10, 
+    levelProgress: 50,
   })
   .actions(self => ({
     functionHere(){
@@ -9,7 +18,8 @@ const Template = types
     }
   }))
   .actions(self => ({
-    functionHere(){
+    setEat(val){
+      self.eat = val
     }, 
   }))
   .views(self => ({

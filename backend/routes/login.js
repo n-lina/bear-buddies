@@ -24,6 +24,7 @@ const createUser = async (req, res) => {
     return res.send(user);
   }
   catch (error) {
+    console.log(error);
     return res.status(400).send("Cannot create a user");
   }
 }
