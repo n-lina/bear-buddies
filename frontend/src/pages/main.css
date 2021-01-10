@@ -82,7 +82,7 @@
     border-radius:40px;
     border-style:solid;
     border-color: goldenrod;
-    box-shadow: 10px 10px 5px rgb(87, 87, 87);
+    box-shadow: 10px 10px 4px rgb(87, 87, 87);
     color: rgb(136, 39, 39);
     transition: 0.2s;
 }
@@ -95,10 +95,10 @@
 
 .date{
     width: 80%;
-    line-height: 2.5em;
+    line-height: 2em;
     background: #836A3D; 
     border-radius: 30px;
-    margin: 2% 2% 2% 2%;
+    margin: 2% 2%;
     color: rgb(230, 230, 230);
     display: flex;
     justify-content: center;
@@ -111,7 +111,7 @@
 
 .logout{
     width: 80%;
-    line-height: 2.5em;
+    line-height: 2em;
     background: #836A3D; 
     border-radius: 30px;
     margin: 2% 2% 2% 2%;

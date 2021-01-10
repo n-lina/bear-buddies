@@ -274,8 +274,9 @@ const MainPage = () => {
           >
             <Fade in={open}>
               <div className={classes.paper}>
-                <h2 id="transition-modal-title">Transition modal</h2>
-                <p id="transition-modal-description">react-transition-group animates me.</p>
+                <h2 id="transition-modal-title">Bear Buddies</h2>
+                <p id="transition-modal-description">Ease your anxiety and improve your mental wellness by taking care of your own pet!
+                  <br /> Make sure to pet, feed, and play with it often!</p>
               </div>
             </Fade>
           </Modal>
