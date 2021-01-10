@@ -1,6 +1,5 @@
 const router = require('express').Router();
 let User = require('../models/user.model');
-const checkIfAuthenticated = require('../admin').checkIfAuthenticated;
 
 // GET ALL TASKS
 router.get('/:id', (req, res) => {

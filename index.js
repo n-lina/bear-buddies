@@ -3,8 +3,6 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-const login = require('./routes/login');
-
 require('dotenv').config();
 
 // create express server
@@ -20,7 +18,6 @@ app.get('*', (req, res) => {
 // cors middleware
 app.use(cors());
 app.use(express.json()); // parse json
-app.use('/login', login);
 
 const uri = process.env.MONGODB_KEY;
 // need these flags to deal with things that mongoDB has deprecated
