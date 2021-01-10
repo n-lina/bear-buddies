@@ -87,7 +87,8 @@
 }
 
 .date{
-    height: 10%;
+    width: 80%;
+    line-height: 3.5em;
     background: #836A3D; 
     border-radius: 30px;
     margin: 2% 2% 2% 2%;
