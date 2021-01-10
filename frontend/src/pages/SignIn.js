@@ -79,7 +79,7 @@ class SignIn extends React.Component {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <br/>
-        <div className={classes.paper}>
+        <div className={classes.paper} style={{backgroundColor: 'rgba(255,255,255,0.6)', padding:'25px', borderRadius:'20px'}}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
