@@ -61,7 +61,41 @@ function NormalBear() {
 
     const Scarf = () => (
         <a.Shape stroke={0}>
-            <Ellipse diameter={13} quarters={2} color="purple" stroke={2} rotate={{ x: TAU / 4.5, y: TAU / 1, z: TAU / 3.5 }} translate={{ x: 0, y: 6, z: 2 }} />
+            <Ellipse diameter={13} quarters={2} color="purple" stroke={2} rotate={{ x: TAU / 4.5, y: TAU / 1, z: TAU / 3.5 }} translate={{ x: 0, y: 6, z: 0 }} />
+        </a.Shape>
+    );
+
+    const NeutralFace = () => (
+        <a.Shape stroke={0}>
+            <a.Shape ref={ref} stroke={1.2} translate={{ x: -2.2, y: -1, z: 6.8 }} color="#241d19" fill /> {/*left eye*/}
+            <a.Shape ref={ref} stroke={1.2} translate={{ x: 2.2, y: -1, z: 6.8 }} color="#241d19" fill /> {/*right eye*/}
+        </a.Shape>
+    );
+
+    const HappyFace = () => (
+        <a.Shape stroke={0}>
+            <a.Ellipse stroke={0.5} diameter={1.5} quarters={2} translate={{ x: -2.2, y: -1, z: 6 }} rotate={{ z: TAU - TAU / 4 }} color="#241d19" /> {/*left eye*/}
+            <a.Ellipse stroke={0.5} diameter={1.5} quarters={2} translate={{ x: 2.2, y: -1, z: 6 }} rotate={{ z: TAU - TAU / 4 }} color="#241d19" /> {/*right eye*/}
+        </a.Shape>
+    );
+
+    // happiness indicator
+    const SadFace = () => (
+        <a.Shape stroke={0}>
+            <Shape path={[{ x: -2.75 }, { x: -2 }]} stroke={0.5} translate={{ x: 0, y: -1, z: 6.8 }} color="#241d19" />
+            <Shape path={[{ x: 2 }, { x: 2.75 }]} stroke={0.5} translate={{ x: 0, y: -1, z: 6.8 }} color="#241d19" />
+            <Shape path={[{ x: 2.5 }, { x: 2.5, y: 3 }]} stroke={1} translate={{ x: 0, y: -0.3, z: 6.8 }} color="#87c9e8" />
+            <Shape path={[{ x: -2.5 }, { x: -2.5, y: 4 }]} stroke={1} translate={{ x: 0, y: -0.3, z: 6.8 }} color="#87c9e8" />
+        </a.Shape>
+    );
+
+    // calmness indicator
+    const AngryFace = () => (
+        <a.Shape stroke={0}>
+            <Shape path={[{ x: -2.75 }, { x: -2 }]} stroke={0.5} translate={{ x: 0, y: -1, z: 6.8 }} color="#241d19" />
+            <Shape path={[{ x: 2 }, { x: 2.75 }]} stroke={0.5} translate={{ x: 0, y: -1, z: 6.8 }} color="#241d19" />
+            <Shape path={[{ x: -2.75 }, { x: -2 }]} stroke={0.5} translate={{ x: 0, y: -2, z: 6.8 }} rotate={{ z: TAU - TAU / 1.1 }} color="#241d19" />
+            <Shape path={[{ x: 2 }, { x: 2.75 }]} stroke={0.5} translate={{ x: 0, y: -2, z: 6.8 }} rotate={{ z: TAU - TAU / 9 }} color="#241d19" />
         </a.Shape>
     );
 
@@ -69,8 +103,7 @@ function NormalBear() {
         <a.Shape ref={ref} stroke={15} translate={{ y: -9.5 }} color={color}> {/*head*/}
             <a.Shape ref={ref} stroke={4} translate={{ x: -7, y: -4 }} color={color_tint} fill /> {/*left ear*/}
             <a.Shape ref={ref} stroke={4} translate={{ x: 7, y: -4 }} color={color_tint} fill /> {/*right ear*/}
-            <a.Shape ref={ref} stroke={1.2} translate={{ x: -2.2, y: -1, z: 6.8 }} color="#241d19" fill /> {/*left eye*/}
-            <a.Shape ref={ref} stroke={1.2} translate={{ x: 2.2, y: -1, z: 6.8 }} color="#241d19" fill /> {/*right eye*/}
+            <AngryFace />
             <Glasses />
             <a.Shape height={3} width={2} ref={ref} scale={size} translate={{ y: 2.5, z: 6.8 }} rotate={{ z: TAU / 4 }} closed color="#b08b74" stroke={6} fill /> {/*mouth*/}
             <a.Shape height={1.3} width={1} ref={ref} scale={size} translate={{ y: 2, z: 9 }} rotate={{ z: TAU / 4 }} closed color="#241d19" stroke={3} fill> {/*nose*/}
@@ -79,11 +112,11 @@ function NormalBear() {
             <Ellipse diameter={1} translate={{ x: -3.5, y: 1.5, z: 6.5 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.5} fill /> {/*left blush*/}
             <Ellipse diameter={1} translate={{ x: 3.5, y: 1.5, z: 6.5 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.5} fill /> {/*left right*/}
             <a.Ellipse height={7} width={4} ref={ref} stroke={14} translate={{ x: 0, y: 13 }} color={color} fill /> {/*body*/}
-            <Scarf />
             <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: 11, y: 10 }} rotate={{ z: TAU / 3 }} color={color_tint} fill /> {/*left arm*/}
             <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: -11, y: 10 }} rotate={{ z: TAU / -3 }} color={color_tint} fill /> {/*right arm*/}
             <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: 6, y: 23 }} rotate={{ z: TAU / 1 }} color={color_tint} fill /> {/*left leg*/}
             <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: -6, y: 23 }} rotate={{ z: TAU / 1 }} color={color_tint} fill /> {/*right leg*/}
+            <Scarf />
         </a.Shape>
     );
 }
@@ -173,6 +206,13 @@ function PlayBear() {
     let t = 0
     useRender(() => (ref.current.rotate.y = Math.cos((t += 0.1) / TAU)));
 
+    const Headband = () => (
+        <a.Shape stroke={0}>
+            <Ellipse diameter={10} quarters={2} color="#9c162c" stroke={2} rotate={{ x: TAU / 4, y: TAU / 1, z: TAU / 3.5 }} translate={{ x: 0, y: -4, z: 1 }} />
+            <Ellipse diameter={11} quarters={2} color="white" stroke={0.2} rotate={{ x: TAU / 4, y: TAU / 1, z: TAU / 3.5 }} translate={{ x: 0, y: -4, z: 1 }} />
+        </a.Shape>
+    );
+
     return (
         <a.Shape ref={ref} stroke={15} translate={{ y: -9.5 }} color={color}> {/*head*/}
             <a.Shape>
@@ -200,6 +240,7 @@ function PlayBear() {
             <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: -11, y: up ? 10 : 10 - 3 }} rotate={{ z: TAU / (up ? -3 : rightArm) }} color={color_tint} fill /> {/*right arm*/}
             <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: 6, y: up ? 23 : 23 - 2 }} rotate={{ z: TAU / (up ? 1 : leftLeg) }} color={color_tint} fill /> {/*left leg*/}
             <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: -6, y: up ? 23 : 23 - 2 }} rotate={{ z: TAU / (up ? 1 : rightLeg) }} color={color_tint} fill /> {/*right leg*/}
+            <Headband />
         </a.Shape>
     );
 }
