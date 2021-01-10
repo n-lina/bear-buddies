@@ -101,6 +101,7 @@ const MainPage = () => {
     <div className="main">
       <div className="leftSide">
         <div className="level">
+          <br/>
           <p className="label"> Level </p>
           <div className="level-left-ear"></div>
           <div className="level-right-ear"></div>
@@ -108,6 +109,7 @@ const MainPage = () => {
           <div className="bar-level"><ProgressBar completed={templateStore.levelProgress} labelSize="0" width="91%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} /></div>
         </div>
         <div className="vitals">
+          <br/>
           <p className="label">Fullness</p>
           <div className="bar"><ProgressBar completed={templateStore.full} labelSize="0"  width="92%" bgcolor={"#145E0A"} baseBgColor={"#D9B680"} height="15px" /></div>
           <p className="label">Cleanliness</p>

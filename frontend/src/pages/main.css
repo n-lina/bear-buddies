@@ -95,7 +95,9 @@
 }
 
 .label {
-    margin: 1%;
+    margin: 2%;
+    font-family: "Lucida Console", monospace;
+    /* background: pink; */
 }
 
 .icon {
