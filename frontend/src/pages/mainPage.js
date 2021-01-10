@@ -12,6 +12,7 @@ import { MdInfo } from "react-icons/md";
 import { observer } from "mobx-react"
 import axios from 'axios';
 import { auth } from "../firebase"
+import Logout from '../components/Logout'
 
 
 /** --- Basic, re-usable shapes -------------------------- */
@@ -230,6 +231,7 @@ const MainPage = () => {
           <div className="control" onClick={() => templateStore.handleBreathe(!templateStore.breatheBool)}>Breathe</div>
           <div className="control" onClick={() => templateStore.handlePet(!templateStore.petBool)}>Pet</div>
         </div>
+        <Logout/>
       </div>
     </div>
   );
