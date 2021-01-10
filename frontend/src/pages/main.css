@@ -74,10 +74,10 @@
 }
 
 .control {
-    width: 135px;
+    width: 40%;
     margin: 1%;
     text-align: center;
-    line-height: 120px;
+    line-height: 6.5em;
     background: #F3DD79;
     border-radius:40px;
     border-style:solid;
@@ -87,7 +87,8 @@
 }
 
 .date{
-    height: 10%;
+    width: 80%;
+    line-height: 3.5em;
     background: #836A3D; 
     border-radius: 30px;
     margin: 2% 2% 2% 2%;

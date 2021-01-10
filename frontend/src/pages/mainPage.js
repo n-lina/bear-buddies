@@ -247,14 +247,15 @@ const MainPage = () => {
         </div>
       </div>
       <div className="rightSide">
-        <div className="date">Date</div>
         <div className="rightButtons">
+          <div className="date">Jan 10, 2021</div>
           <div className="control" onClick={() => templateStore.handleEat(!templateStore.eatBool)}>Feed</div>
           <div className="control" onClick={() => templateStore.handleClean(!templateStore.cleanBool)}>Bathe</div>
           <div className="control" onClick={() => templateStore.handlePlay(!templateStore.healthBool)}>Play</div>
           <div className="control" onClick={() => templateStore.handleSleep(!templateStore.sleepBool)}>Sleep</div>
           <div className="control" onClick={() => templateStore.handleBreathe(!templateStore.breatheBool)}>Breathe</div>
           <div className="control" onClick={() => templateStore.handlePet(!templateStore.petBool)}>Pet</div>
+          <Logout/>
         </div>
       </div>
     </div>
