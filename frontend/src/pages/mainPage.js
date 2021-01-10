@@ -128,7 +128,7 @@ const MainPage = () => {
             level: 1,
             experience: 0,
             animalName: "Odie",
-            hunger: 0,
+            fullness: 100,
             happiness: 100,
             cleanliness: 100,
             energy: 100,
