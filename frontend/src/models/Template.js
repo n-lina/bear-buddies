@@ -16,7 +16,8 @@ const Template = types
     health: 80,
     level: 1,
     levelProgress: 50,
-    name: "'"
+    name: "odie", 
+
   })
   .actions(self => ({
     checkLevelUp() {
@@ -104,7 +105,7 @@ const Template = types
     }, 
     setLvlProgress(val){
       self.levelProgress = val
-    }
+    }, 
   }))
   .views(self => ({
   }));

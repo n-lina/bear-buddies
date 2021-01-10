@@ -15,7 +15,7 @@ class Logout extends React.Component {
   
     render() {
       return (
-        <div className="date" onClick={this.logout}>Log Out</div>
+        <div className="logout" onClick={this.logout}>Log Out</div>
       );
     }
   };
