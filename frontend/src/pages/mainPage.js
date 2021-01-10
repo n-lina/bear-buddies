@@ -148,9 +148,9 @@ const MainPage = () => {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
 
   const handleClose = () => {
     setOpen(false);
@@ -260,8 +260,8 @@ const MainPage = () => {
         <div className="userToolbar">
           <div className="icon" onClick={() => exportComponentAsPNG(zdogRef)}><FaCameraRetro size={50} color="#3D2A02" /></div>
           <div className="icon" onClick={() => setShowA(!showA)}><IoShirt size={50} color="#3D2A02" /></div>
-          <div className="icon" onClick={handleOpen}><MdInfo size={50} color="#3D2A02" /></div>
-          <Modal
+          <div className="icon" onClick={() => setOpen(!open)}><MdInfo size={50} color="#3D2A02" /></div>
+          {/* <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
             className={classes.modal}
@@ -280,12 +280,12 @@ const MainPage = () => {
                   <br /> Make sure to pet, feed, and play with it often!</p>
               </div>
             </Fade>
-          </Modal>
+          </Modal> */}
         </div>
       </div>
       <div className="zdog" ref={zdogRef}>
         {showA && <div className="access">
-            <p className = "label-a">- accessories -</p>
+            <p className = "label-a">- badges -</p>
             <div style={{marginTop: 30}}>
               {templateStore.level >=1 && icons[0]}
               {templateStore.level >=2 && icons[1]}
@@ -296,6 +296,11 @@ const MainPage = () => {
               {templateStore.level >=7 && icons[6]}
             </div>
           </div>}
+          {open && <div className="access">
+            <p className = "label-a">- bear buddies -</p>
+            <p className = "info-modal" style={{marginTop: 60, margin:40}}> Ease your anxiety and improve your mental wellness by taking care of your own pet!
+                  <br /> <br /> Make sure to pet, feed, and play with it often. </p>
+            </div>}
         <Illustration zoom={8} dragRotate={true}>
           {/* <Ellipse diameter={7} rotate={{ x: -TAU / 3 }} translate={{ y: 15, z: -100 }} stroke={4} color="#373740" fill /> */}
           <Bear templateStore={templateStore} />
