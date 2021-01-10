@@ -54,7 +54,7 @@
 }
 
 .rightSide{
-    height: 98%;
+    height: 97%;
     float: right;
     width: 29%;
     background: #CC9D55;
@@ -67,22 +67,39 @@
     justify-content: center;
 }
 
+.rightButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: baseline;
+}
+
 .control {
-    float: left; 
-    width: 45%;
-    height: 28%;
+    width: 135px;
     margin: 1%;
+    text-align: center;
+    line-height: 120px;
     background: #F3DD79;
     border-radius:40px;
     border-style:solid;
     border-color: goldenrod;
+    box-shadow: 10px 10px 5px grey;
+    color: rgb(136, 39, 39);
 }
 
 .date{
     height: 10%;
     background: #836A3D; 
     border-radius: 30px;
-    margin: 2% 2% 0% 2% ;
+    margin: 2% 2% 2% 2%;
+    color: rgb(230, 230, 230);
+    display: flex;
+    justify-content: center;
+    padding-top: 4%;
+    border-radius:40px;
+    border-style:solid;
+    border-color: rgba(100, 84, 44, 0.438);
+    box-shadow: 5px 5px 2px rgb(87, 87, 87);
 }
 
 .name{
