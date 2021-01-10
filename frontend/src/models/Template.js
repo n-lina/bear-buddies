@@ -12,7 +12,7 @@ const Template = types
     clean: 80,
     energy: 80,
     happy: 80,
-    calm: 80,
+    calm: 30,
     health: 80,
     level: 1,
     levelProgress: 50,
@@ -22,7 +22,10 @@ const Template = types
     checkLevelUp() {
       if (self.full >= 100 && self.clean >= 100 && self.health >= 100 && self.energy >= 100 && self.calm >= 100 && self.happy >= 100) {
         self.levelProgress += 10
-        if (self.levelProgress >= 100) self.level += 1
+        if (self.levelProgress >= 100){
+          self.level += 1
+          self.levelProgress = 0
+        } 
       }
     }
   }))
@@ -60,7 +63,7 @@ const Template = types
       }
     }, 
     handleBreathe(val){
-      self.calmBool = val
+      self.breatheBool = val
       if (self.calm >= 100) return
       if (val) {
         self.calm = Math.min(100, self.calm + 10)
@@ -68,7 +71,7 @@ const Template = types
       }
     }, 
     handlePet(val){
-      self.happyBool = val
+      self.petBool = val
       if (self.happy >= 100) return
       if (val) {
         self.happy = Math.min(100, self.happy + 10)

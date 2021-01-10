@@ -12,6 +12,13 @@ import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 import { auth } from '../firebase';
+import forest1 from "../assets/forest.jpg"
+import forest2 from "../assets/fall-forest.jpg"
+import forest3 from "../assets/forest1.jpg"
+import forest4 from "../assets/forest2.png"
+import forest5 from "../assets/night.jpg"
+import bear from "../assets/bear.jpg"
+import bear2 from "../assets/bear2.jpg"
 
 const styles = (theme) => ({
   paper: {
@@ -68,8 +75,10 @@ class SignIn extends React.Component {
   render() {
     const { classes } = this.props;
     return (
+      <div style={{backgroundImage: `url(${bear})`, height: 600}}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        <br/>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
@@ -123,6 +132,7 @@ class SignIn extends React.Component {
         <Box mt={8}>
         </Box>
       </Container>
+      </div>
     );
   }
 }

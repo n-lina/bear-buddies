@@ -13,6 +13,8 @@ import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 import { auth } from '../firebase';
 import axios from 'axios';
+import bear2 from "../assets/bear2.jpg"
+
 
 const styles = (theme) => ({
   paper: {
@@ -90,8 +92,10 @@ class SignUp extends React.Component {
   render() {
     const { classes } = this.props;
     return (
+      <div style={{backgroundImage: `url(${bear2})`, height: 600}}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        <br/>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
@@ -155,6 +159,7 @@ class SignUp extends React.Component {
         <Box mt={8}>
         </Box>
       </Container>
+      </div>
     );
   }
 }

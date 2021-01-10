@@ -13,6 +13,7 @@ import { observer } from "mobx-react"
 import axios from 'axios';
 import { auth } from "../firebase"
 
+
 /** --- Basic, re-usable shapes -------------------------- */
 const TAU = Math.PI * 2
 const Eye = props => <Ellipse diameter={1.7} quarters={2} translate={{ x: -2.2, y: 0, z: 4.7 }} rotate={{ z: -TAU / 4 }} color="#444B6E" stroke={0.7} {...props} />
@@ -114,7 +115,7 @@ const MainPage = () => {
           templateStore.setEnergy(res.data.energy)
           templateStore.setHappy(res.data.happiness)
           templateStore.setHealth(res.data.health)
-          templateStore.setCalm(res.data.calm)
+          templateStore.setCalm(res.data.calmness)
           templateStore.setLevel(res.data.level)
           templateStore.setLvlProgress(res.data.experience)
           setLookup(true);
@@ -128,6 +129,8 @@ const MainPage = () => {
   const updateData = () => {
     auth.onAuthStateChanged((user) => {
       if (user) {
+        console.log("hello")
+        console.log(templateStore.calm)
         axios({
           method: 'put',
           url: '/api/',
@@ -163,7 +166,7 @@ const MainPage = () => {
       <div className="leftSide">
         <div className="level">
           <div style={{height: 15}}></div>
-          <p className="label-top"> level </p>
+          <p className="label-top">— level —</p>
           <div className="level-left-ear"></div>
           <div className="level-right-ear"></div>
           <div className="level-circle">
@@ -210,7 +213,11 @@ const MainPage = () => {
           {/* <Ellipse diameter={7} rotate={{ x: -TAU / 3 }} translate={{ y: 15, z: -100 }} stroke={4} color="#373740" fill /> */}
           <Bear templateStore={templateStore} />
         </Illustration>
-        <div className="name">Name</div>
+        <div className="name">
+          <div className="inner-name">
+              <p className = "nametag">Odie</p>
+          </div>
+        </div>
       </div>
       <div className="rightSide">
         <div className="date">Date</div>
