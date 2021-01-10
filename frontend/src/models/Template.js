@@ -2,24 +2,24 @@ import { types } from "mobx-state-tree";
 
 const Template = types
   .model("Template", {
-    eatBool: false, 
-    cleanBool: false, 
-    healthBool: false, 
-    sleepBool: false, 
-    breatheBool: false, 
+    eatBool: false,
+    cleanBool: false,
+    healthBool: false,
+    sleepBool: false,
+    breatheBool: false,
     petBool: false,
-    full: 80, 
-    clean: 80, 
-    energy: 80, 
-    happy: 80, 
-    calm: 80, 
+    full: 80,
+    clean: 80,
+    energy: 80,
+    happy: 80,
+    calm: 80,
     health: 80,
-    level: 1, 
+    level: 1,
     levelProgress: 50,
   })
   .actions(self => ({
-    checkLevelUp(){
-      if (self.full >= 100 && self.clean >= 100 && self.health >= 100 && self.energy >= 100 && self.calm >= 100 && self.happy >= 100){
+    checkLevelUp() {
+      if (self.full >= 100 && self.clean >= 100 && self.health >= 100 && self.energy >= 100 && self.calm >= 100 && self.happy >= 100) {
         self.levelProgress += 10
         if (self.levelProgress >= 100) self.level += 1
       }
@@ -73,7 +73,7 @@ const Template = types
         self.happy = Math.max(100, self.happy + 10)
         self.checkLevelUp()
       }
-    }, 
+    },
   }))
   .views(self => ({
   }));
