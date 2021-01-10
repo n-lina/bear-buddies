@@ -59,7 +59,7 @@ const Template = types
       }
     }, 
     handleBreathe(val){
-      self.calmBool = val
+      self.breatheBool = val
       if (self.calm >= 100) return
       if (val) {
         self.calm = Math.min(100, self.calm + 10)
@@ -67,7 +67,7 @@ const Template = types
       }
     }, 
     handlePet(val){
-      self.happyBool = val
+      self.petBool = val
       if (self.happy >= 100) return
       if (val) {
         self.happy = Math.min(100, self.happy + 10)
