@@ -110,8 +110,9 @@
 }
 
 .logout{
-    height: 10%;
-    background: #836A3D;
+    width: 80%;
+    line-height: 3.5em;
+    background: #836A3D; 
     border-radius: 30px;
     margin: 2% 2% 2% 2%;
     color: rgb(230, 230, 230);

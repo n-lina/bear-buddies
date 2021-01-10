@@ -26,6 +26,7 @@ import fish1 from "../assets/badge-fish-gold.PNG"
 import honey from "../assets/badge-honey.PNG"
 import tree from "../assets/badge-tree-gold.PNG"
 import tree1 from "../assets/badge-tree-green.PNG"
+import Logout from '../components/Logout'
 
 const icons = [<img className="badge" src={berry}></img>,
 <img className="badge" src={berry1}></img>,
