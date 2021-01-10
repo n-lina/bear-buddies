@@ -9,7 +9,7 @@ const Template = types
     breatheBool: false,
     petBool: false,
     full: 80,
-    clean: 80,
+    clean: 40,
     energy: 80,
     happy: 80,
     calm: 30,
@@ -51,12 +51,12 @@ const Template = types
       }
     }, 
     handleClean(val){
-      self.cleanBool = val
       self.healthBool = false; 
       self.sleepBool = false; 
       self.breatheBool = false; 
       self.petBool = false;
       self.eatBool = false;
+      self.cleanBool = val
       if (self.clean >= 100) return
       if (val) {
         self.healthBool = false; 

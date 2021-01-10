@@ -51,19 +51,30 @@ function NormalBear(templateStore) {
     useRender(() => (ref.current.rotate.y = Math.cos((t += 0.1) / TAU)));
 
     // add conditional to check for accessories
-    const Glasses = () => (
-        <a.Shape stroke={0}>
+    const Glasses = () => {
+        if (templateStore.glasses){
+        return (<a.Shape stroke={0}>
             <Ellipse diameter={3} translate={{ x: -2.2, y: -1, z: 6.8 }} closed color="gold" stroke={0.3} />
             <Ellipse diameter={3} translate={{ x: 2.2, y: -1, z: 6.8 }} closed color="gold" stroke={0.3} />
             <Shape path={[{ x: -0.5 }, { x: 0.5 }]} stroke={0.3} translate={{ x: 0, y: -1, z: 6.8 }} color="gold" />
-        </a.Shape>
-    );
+        </a.Shape>)
+        }
+        else{
+            return (<a.Shape stroke={0} />)
+        }
+    };
 
-    const Scarf = () => (
+    const Scarf = () => {
+        if (templateStore.scarf){
+        return(
         <a.Shape stroke={0}>
             <Ellipse diameter={13} quarters={2} color="purple" stroke={2} rotate={{ x: TAU / 4.5, y: TAU / 1, z: TAU / 3.5 }} translate={{ x: 0, y: 6, z: 0 }} />
         </a.Shape>
-    );
+        )}
+        else{
+            return (<a.Shape stroke={0} />)
+        }
+    };
 
     const Face = () => {
         if (templateStore.happy < 50 ||

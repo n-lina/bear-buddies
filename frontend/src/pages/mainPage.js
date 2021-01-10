@@ -144,6 +144,7 @@ const MainPage = () => {
 <img className="badge" src={tree1}></img>,
 <img className="icons" src={glasses}></img>,
 <img className="icons" src={scarf}></img>]
+
   const [open, setOpen] = useState(false);
   const classes = useStyles();
 
@@ -299,13 +300,13 @@ const MainPage = () => {
           {/* <Ellipse diameter={7} rotate={{ x: -TAU / 3 }} translate={{ y: 15, z: -100 }} stroke={4} color="#373740" fill /> */}
           <Bear templateStore={templateStore} />
         </Illustration>
-        <div className = "iconbg" onClick={templateStore.setScarf(!templateStore.scarf)}>{icons[8]}</div>
+        <div className = "iconbg" onClick={() => templateStore.setScarf(!templateStore.scarf)}>{icons[8]}</div>
         <div className="name">
           <div className="inner-name">
               <p className = "nametag">{templateStore.name} the Bear 🤍</p>
           </div>
         </div>
-        <div className = "iconbg" onClick={templateStore.setGlasses(!templateStore.glasses)}>{icons[7]}</div>
+        <div className = "iconbg" onClick={() => templateStore.setGlasses(!templateStore.glasses)}>{icons[7]}</div>
       </div>
       <div className="rightSide">
         <div className="rightButtons">
