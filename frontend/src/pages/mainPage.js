@@ -108,7 +108,15 @@ const MainPage = () => {
           method: 'post',
           url: `/api/${user.uid}`
         }).then((res) => {
-          console.log(res.data);
+          templateStore.setName(res.data.animalName)
+          templateStore.setFull(res.data.fullness)
+          templateStore.setClean(res.data.cleanliness)
+          templateStore.setEnergy(res.data.energy)
+          templateStore.setHappy(res.data.happiness)
+          templateStore.setHealth(res.data.health)
+          templateStore.setCalm(res.data.calm)
+          templateStore.setLevel(res.data.level)
+          templateStore.setLvlProgress(res.data.experience)
           setLookup(true);
         }).catch((err) => {
           console.log(err);
@@ -125,15 +133,15 @@ const MainPage = () => {
           url: '/api/',
           data: {
             requesterID: `${user.uid}`,
-            level: 1,
-            experience: 0,
-            animalName: "Odie",
-            hunger: 0,
-            happiness: 100,
-            cleanliness: 100,
-            energy: 100,
-            calmness: 100,
-            health: 100
+            level: templateStore.level,
+            experience: templateStore.experience,
+            animalName: templateStore.name,
+            fullness: templateStore.fullness,
+            happiness: templateStore.happy,
+            cleanliness: templateStore.clean,
+            energy: templateStore.energy,
+            calmness: templateStore.calm,
+            health: templateStore.health
           }
         });
       }
@@ -148,7 +156,7 @@ const MainPage = () => {
     else {
       updateData();
     }
-  }, []);
+  }, [templateStore.full, templateStore.clean, templateStore.energy, templateStore.happy, templateStore.calm, templateStore.health, templateStore.levelProgress, templateStore.level]);
 
   return (
     <div className="main">
