@@ -82,13 +82,20 @@
     border-radius:40px;
     border-style:solid;
     border-color: goldenrod;
-    box-shadow: 10px 10px 5px grey;
+    box-shadow: 10px 10px 5px rgb(87, 87, 87);
     color: rgb(136, 39, 39);
+    transition: 0.2s;
+}
+
+.control:hover {
+    background: #D0BB65;
+    box-shadow: 0 0;
+    transition: 0.5s;
 }
 
 .date{
     width: 80%;
-    line-height: 3.5em;
+    line-height: 2.5em;
     background: #836A3D; 
     border-radius: 30px;
     margin: 2% 2% 2% 2%;
@@ -100,6 +107,29 @@
     border-style:solid;
     border-color: rgba(100, 84, 44, 0.438);
     box-shadow: 5px 5px 2px rgb(87, 87, 87);
+}
+
+.logout{
+    width: 80%;
+    line-height: 2.5em;
+    background: #836A3D; 
+    border-radius: 30px;
+    margin: 2% 2% 2% 2%;
+    color: rgb(230, 230, 230);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:40px;
+    border-style:solid;
+    border-color: rgba(100, 84, 44, 0.438);
+    box-shadow: 5px 5px 4px rgb(87, 87, 87);
+    transition: 0.2s;
+}
+
+.logout:hover{
+    background: #70592C;
+    box-shadow: 2px 2px 1px rgb(87, 87, 87);
+    transition: 0.5s;
 }
 
 .name{
@@ -212,3 +242,4 @@
     border-style: solid;
     border-color: white;
 }
+

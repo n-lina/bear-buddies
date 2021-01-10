@@ -26,6 +26,11 @@ import fish1 from "../assets/badge-fish-gold.PNG"
 import honey from "../assets/badge-honey.PNG"
 import tree from "../assets/badge-tree-gold.PNG"
 import tree1 from "../assets/badge-tree-green.PNG"
+import Logout from '../components/Logout'
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+import { makeStyles } from '@material-ui/core/styles';
 
 const icons = [<img className="badge" src={berry}></img>,
 <img className="badge" src={berry1}></img>,
@@ -119,11 +124,36 @@ function Guy(props) {
   )
 }
 
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    borderRadius: '5px',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
+
 const MainPage = () => {
   const { templateStore } = useStores()
   const zdogRef = useRef()
   const [lookup, setLookup] = useState(false)
   const [showA, setShowA] = useState(false)
+  const [open, setOpen] = useState(false);
+  const classes = useStyles();
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const getData = () => {
     auth.onAuthStateChanged((user) => {
@@ -229,7 +259,26 @@ const MainPage = () => {
         <div className="userToolbar">
           <div className="icon" onClick={() => exportComponentAsPNG(zdogRef)}><FaCameraRetro size={50} color="#3D2A02" /></div>
           <div className="icon" onClick={() => setShowA(!showA)}><IoShirt size={50} color="#3D2A02" /></div>
-          <div className="icon" onClick={() => console.log("hi")}><MdInfo size={50} color="#3D2A02" /></div>
+          <div className="icon" onClick={handleOpen}><MdInfo size={50} color="#3D2A02" /></div>
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            className={classes.modal}
+            open={open}
+            onClose={handleClose}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Fade in={open}>
+              <div className={classes.paper}>
+                <h2 id="transition-modal-title">Transition modal</h2>
+                <p id="transition-modal-description">react-transition-group animates me.</p>
+              </div>
+            </Fade>
+          </Modal>
         </div>
       </div>
       <div className="zdog" ref={zdogRef}>
