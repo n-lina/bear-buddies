@@ -9,7 +9,7 @@ import RootStore from "../models/RootStore";
 import {RootStoreProvider} from "../models/RootStoreContext"
 import { auth } from "../firebase"
 import PrivateRoute from "../components/PrivateRoute"
-import LoggedInRoute from "../components/LoggedInRoute"
+import PublicRoute from "./PublicRoute"
 
 
 const rootStore = RootStore.create()
@@ -18,15 +18,24 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      authenticated: false,
+      loading: true
     }
   }
 
   componentDidMount() {
     auth.onAuthStateChanged((user) => {
+      console.log(user);
       if (user) {
-        console.log(user);
-        this.setState({user});
+        this.setState({
+          authenticated: true,
+          loading: false,
+        });
+      } else {
+        this.setState({
+          authenticated: false,
+          loading: false,
+        });
       }
     })
   }
@@ -37,9 +46,9 @@ class App extends Component {
         <RootStoreProvider value={rootStore}>
           <Router>
             <Switch>
-              <LoggedInRoute path='/signin' component={SignIn} other="/" exact={true}/>
-              <LoggedInRoute path='/signup' component={SignUp} other="/" exact={true}/>
-              <PrivateRoute path='/' component={Home} other="/signin" user={this.state.user}/>
+              <PublicRoute path='/signin' component={SignIn} authenticated={this.state.authenticated} exact={true}/>
+              <PublicRoute path='/signup' component={SignUp} authenticated={this.state.authenticated} exact={true}/>
+              <PrivateRoute path='/' component={Home} authenticated={this.state.authenticated} user={this.state.user}/>
             </Switch>
           </Router>
         </RootStoreProvider>
