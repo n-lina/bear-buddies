@@ -56,15 +56,13 @@ class SignUp extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state.email)
-    console.log(this.state.pass);
     auth.createUserWithEmailAndPassword(this.state.email, this.state.pass)
       .then((user) => {
         axios({
           method: 'post',
           url: '/api/',
           data: {
-            requesterID: user.uuid,
+            requesterID: user.user.uid,
             level: 1,
             experience: 0,
             animalName: "Odie",
