@@ -49,21 +49,22 @@ function Bear(props) {
     const [up, setUp] = useState(true)
 
     useInterval(() => {
-        console.log('hi' + up + templateStore.healthBool);
         setUp(!up)
     }, 450);
 
     const leftArm = templateStore.healthBool ? 3 : 6;
-    const leftLeg = templateStore.healthBool ? 3 : 0;
-    const rightArm = templateStore.healthBool ? -6 : -3;
-    const rightLeg = templateStore.healthBool ? -3 : 0;
+    const leftLeg = templateStore.healthBool ? 0 : 3;
+    const rightArm = templateStore.healthBool ? -3 : -6;
+    const rightLeg = templateStore.healthBool ? 0 : -3;
 
     // const { rotation, color, color_tint, size } = useSpring({ size: up ? 1.2 : 0.2, color: up ? '#7a5843' : '#7a5843', color_tint: up ? '#7b6044' : '#7b6044', rotation: up ? 0 : Math.PI });
     const size = 1.2;
     const color = "#7a5843"
     const color_tint = "#7b6044"
     const rotation = 0;
-    const { la, ll, ra, rl } = useSpring({ la: up ? 3 : 6, ll: up ? 0 : 3, ra: up ? -3 : -6, rl: up ? 0 : -3 });
+    // const { rotation, color, size } = useSpring({ size: up ? 1.2 : bbb, color: up ? '#EA0' : aaa, rotation: up ? 0 : ccc })
+    const { la, ll, ra, rl } = useSpring({ la: up ? 3 : leftArm, ll: up ? 0 : leftLeg, ra: up ? -3 : rightArm, rl: up ? 0 : rightLeg});
+
     const ref = useRef()
     let t = 0
     useRender(() => (ref.current.rotate.y = Math.cos((t += 0.1) / TAU)));
@@ -82,10 +83,11 @@ function Bear(props) {
             <Ellipse diameter={1} translate={{ x: -3.5, y: 1.5, z: 6.5 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.5} fill /> {/*left blush*/}
             <Ellipse diameter={1} translate={{ x: 3.5, y: 1.5, z: 6.5 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.5} fill /> {/*left right*/}
             <a.Ellipse height={7} width={4} ref={ref} stroke={14} translate={{ x: 0, y: 13 }} color={color} fill /> {/*body*/}
-            <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: 11, y: 10 }} rotate={{ z: TAU / (up ? 6 : leftArm) }} color={color_tint} fill /> {/*left arm*/}
-            <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: -11, y: 10 }} rotate={{ z: TAU / ra }} color={color_tint} fill /> {/*right arm*/}
-            <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: 6, y: 23 }} rotate={{ z: TAU / ll }} color={color_tint} fill /> {/*left leg*/}
-            <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: -6, y: 23 }} rotate={{ z: TAU / rl }} color={color_tint} fill /> {/*right leg*/}
+            <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: 11, y: 10 }} rotate={{ z: TAU / (up ? 3 : leftArm)}} color={color_tint} fill /> {/*left arm*/}
+            <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: -11, y: 10 }} rotate={{ z: TAU / (up ? -3 : rightArm) }} color={color_tint} fill /> {/*right arm*/}
+            <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: 6, y: 23 }} rotate={{ z: TAU / (up ? 0.001 : leftLeg) }} color={color_tint} fill /> {/*left leg*/}
+            <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: -6, y: 23 }} rotate={{ z: TAU / (up ? 0.001 : rightLeg) }} color={color_tint} fill /> {/*right leg*/}
+        {/* had to put 0.001 cuz cant divide by 0    */}
         </a.Shape>
     )
 }

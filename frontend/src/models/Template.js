@@ -42,7 +42,7 @@ const Template = types
     },
     handlePlay(val) {
       console.log('in handle play ', val);
-      self.playBool = val
+      self.healthBool = val
       if (val) {
         self.health += 10
         self.checkLevelUp()
