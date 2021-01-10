@@ -82,6 +82,8 @@ function FeedBear() {
         setUp(!up)
     }, 450);
 
+    const two = 15;
+
     const leftArm = up ? 3 : 6;
     const leftLeg = up ? 1 : 3;
     const rightArm = up ? -3 : -6;
@@ -90,8 +92,6 @@ function FeedBear() {
     const size = 1.2;
     const color = "#7a5843"
     const color_tint = "#7b6044"
-    const rotation = 0;
-    // const { rotation, color, size } = useSpring({ size: up ? 1.2 : bbb, color: up ? '#EA0' : aaa, rotation: up ? 0 : ccc })
     const { la, ll, ra, rl } = useSpring({ la: up ? 3 : leftArm, ll: up ? 0 : leftLeg, ra: up ? -3 : rightArm, rl: up ? 0 : rightLeg });
 
     const ref = useRef()
@@ -102,21 +102,35 @@ function FeedBear() {
         <a.Shape ref={ref} stroke={15} translate={{ y: -9.5 }} color={color}> {/*head*/}
             <a.Shape ref={ref} stroke={4} translate={{ x: -7, y: -4 }} color={color_tint} fill /> {/*left ear*/}
             <a.Shape ref={ref} stroke={4} translate={{ x: 7, y: -4 }} color={color_tint} fill /> {/*right ear*/}
-            {/*<Eye /> left eye*/}
-            <a.Shape ref={ref} stroke={1.2} translate={{ x: -2.2, y: -1, z: 6.8 }} color="#241d19" fill /> {/*left eye*/}
-            {/*<Eye translate={{ x: 2.2, z: 6.8 }} /> right eye*/}
-            <a.Shape ref={ref} stroke={1.2} translate={{ x: 2.2, y: -1, z: 6.8 }} color="#241d19" fill /> {/*right eye*/}
+            <Ellipse diameter={1.5} quarters={2} translate={{ x: -2.2, y: -1, z: 6.8 }} rotate={{ z: -TAU / 4 }} color="#241d19" stroke={0.5} /> {/*left eye*/}
+            <Ellipse diameter={1.5} quarters={2} translate={{ x: 2.2, y: -1, z: 6.8 }} rotate={{ z: -TAU / 4 }} color="#241d19" stroke={0.5} /> {/*right eye*/}
             <a.Shape height={3} width={2} ref={ref} scale={size} translate={{ y: 2.5, z: 6.8 }} rotate={{ z: TAU / 4 }} closed color="#b08b74" stroke={6} fill /> {/*mouth*/}
+            <Ellipse diameter={2.5} quarters={2} translate={{ y: 3, z: 7 }} rotate={{ z: TAU / 4 }} closed={true} color="#FED" fill />
             <a.Shape height={1.3} width={1} ref={ref} scale={size} translate={{ y: 2, z: 9 }} rotate={{ z: TAU / 4 }} closed color="#241d19" stroke={3} fill> {/*nose*/}
                 <a.Ellipse height={.1} width={.05} ref={ref} translate={{ x: -.5, y: 0, z: 0 }} color="white" fill />
             </a.Shape>
             <Ellipse diameter={1} translate={{ x: -3.5, y: 1.5, z: 6.5 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.5} fill /> {/*left blush*/}
             <Ellipse diameter={1} translate={{ x: 3.5, y: 1.5, z: 6.5 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.5} fill /> {/*left right*/}
             <a.Ellipse height={7} width={4} ref={ref} stroke={14} translate={{ x: 0, y: 13 }} color={color} fill /> {/*body*/}
-            <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: 11, y: 10 }} rotate={{ z: TAU / (up ? 3 : leftArm) }} color={color_tint} fill /> {/*left arm*/}
-            <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: -11, y: 10 }} rotate={{ z: TAU / (up ? -3 : rightArm) }} color={color_tint} fill /> {/*right arm*/}
-            <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: 6, y: 23 }} rotate={{ z: TAU / (up ? 1 : leftLeg) }} color={color_tint} fill /> {/*left leg*/}
-            <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: -6, y: 23 }} rotate={{ z: TAU / (up ? 1 : rightLeg) }} color={color_tint} fill /> {/*right leg*/}
+            <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: 11, y: 8 }} rotate={{ z: TAU / 6 }} color={color_tint} fill /> {/*left arm*/}
+            <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: -11, y: 8 }} rotate={{ z: TAU / -6 }} color={color_tint} fill /> {/*right arm*/}
+            <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: 6, y: 23 }} rotate={{ z: TAU / 1 }} color={color_tint} fill /> {/*left leg*/}
+            <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: -6, y: 23 }} rotate={{ z: TAU / 1 }} color={color_tint} fill /> {/*right leg*/}
+            <a.Shape stroke={0} ref={ref}>
+                <a.Shape path={[{ x: -20, y: 0.5, z: 12 }, { x: -17, y: -5, z: 12 }, { x: -14, y: 0.5, z: 12 }]} color="#2d6636" closed={false} />
+                <a.Ellipse height={1} width={1} stroke={4} color='#c21540' translate={{ x: -20, y: 1.5, z: 14 }} fill />
+                <a.Ellipse height={1} width={1} stroke={4} color='#c21540' translate={{ x: -14, y: 1.5, z: 14 }} fill />
+            </a.Shape>
+            <a.Shape stroke={0} ref={ref}>
+                <a.Shape path={[{ x: -20 + two, y: 0.5 + two, z: 12 }, { x: -17 + two, y: -5 + two, z: 12 }, { x: -14 + two, y: 0.5 + two, z: 12 }]} color="#2d6636" closed={false} />
+                <a.Ellipse height={1} width={1} stroke={4} color='#c21540' translate={{ x: -20 + two, y: 1.5 + two, z: 14 }} fill />
+                <a.Ellipse height={1} width={1} stroke={4} color='#c21540' translate={{ x: -14 + two, y: 1.5 + two, z: 14 }} fill />
+            </a.Shape>
+            <a.Shape stroke={0} ref={ref}>
+                <a.Ellipse height={5} width={1} stroke={4} rotate={{ z: TAU / 4 }} translate={{ x: 15, y: -5, z: 12 }} color="#6d7f87" fill>
+                    <a.Shape height={1} width={1} color="black" translate={{ y: 2.5, z: 1.5 }} />
+                </a.Ellipse>
+            </a.Shape>
         </a.Shape>
     );
 
