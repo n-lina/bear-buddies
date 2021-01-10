@@ -94,7 +94,8 @@
 }
 
 .date{
-    height: 10%;
+    width: 80%;
+    line-height: 3.5em;
     background: #836A3D; 
     border-radius: 30px;
     margin: 2% 2% 2% 2%;
@@ -216,5 +217,28 @@
 .bar-level {
     margin-top: 20px;
     margin-left: 45px;
+}
+
+.access {
+    position: absolute; 
+    border-radius: 30px;
+    border-style: solid;
+    border-color: brown;
+    height: 400px; 
+    width: 500px;
+    margin-left: 10px;
+    z-index: 5;
+    background: white;
+}
+
+.badge{
+    width: 50px;
+    height: 50px; 
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-left: 15px;
+    float: left;
+    border-style: solid;
+    border-color: white;
 }
 

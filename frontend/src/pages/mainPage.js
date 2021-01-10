@@ -12,7 +12,28 @@ import { MdInfo } from "react-icons/md";
 import { observer } from "mobx-react"
 import axios from 'axios';
 import { auth } from "../firebase"
-import Logout from '../components/Logout'
+import forest1 from "../assets/forest.jpg"
+import forest2 from "../assets/fall-forest.jpg"
+import forest3 from "../assets/forest1.jpg"
+import forest4 from "../assets/forest2.png"
+import forest5 from "../assets/night.jpg"
+import bear from "../assets/bear.jpg"
+import bear2 from "../assets/bear2.jpg"
+import berry from "../assets/badge-berry-purple.PNG"
+import berry1 from "../assets/badge-berry-red.PNG"
+import fish from "../assets/badge-fish-blue.PNG"
+import fish1 from "../assets/badge-fish-gold.PNG"
+import honey from "../assets/badge-honey.PNG"
+import tree from "../assets/badge-tree-gold.PNG"
+import tree1 from "../assets/badge-tree-green.PNG"
+
+const icons = [<img className="badge" src={berry}></img>,
+<img className="badge" src={berry1}></img>,
+<img className="badge" src={fish}></img>,
+<img className="badge" src={fish1}></img>,
+<img className="badge" src={honey}></img>,
+<img className="badge" src={tree}></img>,
+<img className="badge" src={tree1}></img>]
 
 
 /** --- Basic, re-usable shapes -------------------------- */
@@ -102,6 +123,7 @@ const MainPage = () => {
   const { templateStore } = useStores()
   const zdogRef = useRef()
   const [lookup, setLookup] = useState(false)
+  const [showA, setShowA] = useState(false)
 
   const getData = () => {
     auth.onAuthStateChanged((user) => {
@@ -206,11 +228,14 @@ const MainPage = () => {
         </div>
         <div className="userToolbar">
           <div className="icon" onClick={() => exportComponentAsPNG(zdogRef)}><FaCameraRetro size={50} color="#3D2A02" /></div>
-          <div className="icon" onClick={() => console.log("hi")}><IoShirt size={50} color="#3D2A02" /></div>
+          <div className="icon" onClick={() => setShowA(!showA)}><IoShirt size={50} color="#3D2A02" /></div>
           <div className="icon" onClick={() => console.log("hi")}><MdInfo size={50} color="#3D2A02" /></div>
         </div>
       </div>
       <div className="zdog" ref={zdogRef}>
+        {showA && <div className="access">
+            {icons[0]}
+          </div>}
         <Illustration zoom={8} dragRotate={true}>
           {/* <Ellipse diameter={7} rotate={{ x: -TAU / 3 }} translate={{ y: 15, z: -100 }} stroke={4} color="#373740" fill /> */}
           <Bear templateStore={templateStore} />
@@ -222,16 +247,16 @@ const MainPage = () => {
         </div>
       </div>
       <div className="rightSide">
-        <div className="date">Date</div>
         <div className="rightButtons">
+          <div className="date">Jan 10, 2021</div>
           <div className="control" onClick={() => templateStore.handleEat(!templateStore.eatBool)}>Feed</div>
           <div className="control" onClick={() => templateStore.handleClean(!templateStore.cleanBool)}>Bathe</div>
           <div className="control" onClick={() => templateStore.handlePlay(!templateStore.healthBool)}>Play</div>
           <div className="control" onClick={() => templateStore.handleSleep(!templateStore.sleepBool)}>Sleep</div>
           <div className="control" onClick={() => templateStore.handleBreathe(!templateStore.breatheBool)}>Breathe</div>
           <div className="control" onClick={() => templateStore.handlePet(!templateStore.petBool)}>Pet</div>
+          <Logout/>
         </div>
-        <Logout/>
       </div>
     </div>
   );
