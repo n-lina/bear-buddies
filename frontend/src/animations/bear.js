@@ -65,6 +65,29 @@ function NormalBear() {
         </a.Shape>
     );
 
+    const Poop = ()=> (
+        <a.Shape stroke={0} translate={{x:20}} scale={0.5} rotate={{x:TAU/-4}}>
+            <Ellipse diameter={7} color="brown" stroke={4}/>
+            <Ellipse diameter={5} color="brown" stroke={3} translate={{z:-3}}/>
+            <Ellipse diameter={3} color="brown" stroke={2} translate={{z:-5}}/>
+            <a.Cone diameter={4} color="brown" length={-4} translate={{z:-6}} stroke={false}/>
+        </a.Shape>
+        );
+
+    const Fish = ()=> (
+        <a.Shape stroke={0} translate={{x:20}} >
+            <a.Cone diameter={6} color="coral" length={-4} translate={{z:-1}}/>
+            <a.Hemisphere diameter={6} color="indianred" stroke='false'/>
+            <a.Shape path={[{ x:   0, y: -1.5 },
+                { x:  1.5, y:  1.5 },
+                { x: -1.5, y:  1.5 },
+            ]} stroke={2} color="coral" translate={{z:5}} rotate={{y:TAU/-4}}/>
+            <a.Shape stroke={0.5} color='black' translate={{z:-4, x:-1}}/>
+            <a.Shape stroke={0.5} color='black' translate={{z:-4, x:1}}/>
+
+        </a.Shape>
+    );
+
     return (
         <a.Shape ref={ref} stroke={15} translate={{ y: -9.5 }} color={color}> {/*head*/}
             <a.Shape ref={ref} stroke={4} translate={{ x: -7, y: -4 }} color={color_tint} fill /> {/*left ear*/}
@@ -80,6 +103,7 @@ function NormalBear() {
             <Ellipse diameter={1} translate={{ x: 3.5, y: 1.5, z: 6.5 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.5} fill /> {/*left right*/}
             <a.Ellipse height={7} width={4} ref={ref} stroke={14} translate={{ x: 0, y: 13 }} color={color} fill /> {/*body*/}
             <Scarf />
+            <Fish />
             <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: 11, y: 10 }} rotate={{ z: TAU / 3 }} color={color_tint} fill /> {/*left arm*/}
             <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: -11, y: 10 }} rotate={{ z: TAU / -3 }} color={color_tint} fill /> {/*right arm*/}
             <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: 6, y: 23 }} rotate={{ z: TAU / 1 }} color={color_tint} fill /> {/*left leg*/}
