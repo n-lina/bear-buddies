@@ -13,7 +13,7 @@ import bear2 from "../assets/bear2.jpg"
 
 const Home = () => {
   return (
-  <div className="Background" style={{backgroundImage: `url(${forest4})`}}>
+  <div className="Background" style={{backgroundImage: `url(${forest3})`}}>
     <div className="header"> 
       <div style={{height: 4}}></div>
       <div className = "labelbg">
@@ -24,7 +24,7 @@ const Home = () => {
       <Switch>
         <Route path='/else' component={Landing} />
         <Route path='/main' component={MainPage} />
-        <Route path='/' component={Landing} />
+        <Route path='/' component={MainPage} />
       </Switch>
     </div>
   </div>
