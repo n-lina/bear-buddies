@@ -5,20 +5,7 @@ import { a, useSpring } from 'react-spring/zdog';
 import { observer } from "mobx-react"
 
 /** --- Basic, re-usable shapes -------------------------- */
-const TAU = Math.PI * 2
-const Eye = props => <Ellipse diameter={1.5} quarters={2} translate={{ x: -2.2, y: 0, z: 6.8 }} rotate={{ z: -TAU / 4 }} color="#241d19" stroke={0.5} />
-const Leg = props => (
-    <a.Shape path={[{ y: 0 }, { y: 6 }]} translate={{ x: -3 }} color="#747B9E" stroke={4} {...props}>
-        <Shape path={[{ y: 0 }, { y: 6 }]} translate={{ y: 6 }} rotate={{ x: -TAU / 8 }} color="#747B9E" stroke={4} />
-        <RoundedRect width={2} height={4} cornerRadius={1} translate={{ y: 12, z: -3.5 }} rotate={{ x: TAU / 6 }} color="#444B6E" fill stroke={4} />
-    </a.Shape>
-)
-const Arm = props => (
-    <a.Shape path={[{ y: 0 }, { y: 4 }]} translate={{ x: -5, y: -2 }} color="#F0F2EF" stroke={4} {...props}>
-        <Shape path={[{ y: 0 }, { y: 4 }]} translate={{ y: 6 }} rotate={{ x: TAU / 8 }} color="#EA0" stroke={4} />
-        <Shape translate={{ z: 4, y: 9, x: 0 }} stroke={5.4} color="#EA0" />
-    </a.Shape>
-)
+const TAU = Math.PI * 2;
 
 function useInterval(callback, delay) {
     const savedCallback = useRef();
