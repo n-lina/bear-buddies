@@ -24,7 +24,7 @@
     }
 
 .vitals {
-    height: 60%; 
+    height: 62%; 
     background: #CC9D55;
     margin: 0px;
     border-radius:30px;
@@ -33,7 +33,7 @@
 
 .userToolbar {
     margin-top: 2%;
-    height: 16%; 
+    height: 15%; 
     /* background: #E3CA9D; */
     border-radius:30px;
     background:#F3DD79;
@@ -95,7 +95,26 @@
 }
 
 .label {
-    margin: 1%;
+    margin: 0%;
+    font-family: Arial;
+    color: brown;
+    letter-spacing: 5px;
+    border-radius: 30px;
+    width: 200px;
+    display: inline-block;
+}
+
+.label-top {
+    margin: 0%;
+    font-family: Arial;
+    color: palegoldenrod;
+    letter-spacing: 5px;
+    /* background:#8B6829; */
+    border-radius: 30px;
+    width: 200px;
+    display: inline-block;
+    
+    /* background: pink; */
 }
 
 .icon {
