@@ -26,46 +26,51 @@ const Template = types
     }
   }))
   .actions(self => ({
-    handleEat(val) {
+    handleEat(val){
       self.eatBool = val
+      if (self.full >= 100) return
       if (val) {
-        self.full += 10
+        self.full = Math.min(100, self.full + 10)
         self.checkLevelUp()
       }
-    },
-    handleClean(val) {
+    }, 
+    handleClean(val){
       self.cleanBool = val
+      if (self.clean >= 100) return
       if (val) {
-        self.clean += 10
+        self.clean = Math.min(100, self.clean +10)
         self.checkLevelUp()
       }
-    },
-    handlePlay(val) {
-      console.log('in handle play ', val);
+    }, 
+    handlePlay(val){
       self.healthBool = val
+      if (self.health >= 100) return
       if (val) {
-        self.health += 10
+        self.health = Math.min(100, self.health +10)
         self.checkLevelUp()
       }
-    },
-    handleSleep(val) {
+    }, 
+    handleSleep(val){
       self.sleepBool = val
+      if (self.energy >= 100) return
       if (val) {
-        self.energy += 10
+        self.energy = Math.min(100, self.energy + 10)
         self.checkLevelUp()
       }
-    },
-    handleBreathe(val) {
+    }, 
+    handleBreathe(val){
       self.calmBool = val
+      if (self.calm >= 100) return
       if (val) {
-        self.calm += 10
+        self.calm = Math.min(100, self.calm + 10)
         self.checkLevelUp()
       }
-    },
-    handlePet(val) {
+    }, 
+    handlePet(val){
       self.happyBool = val
+      if (self.happy >= 100) return
       if (val) {
-        self.happy += 10
+        self.happy = Math.min(100, self.happy + 10)
         self.checkLevelUp()
       }
     },
