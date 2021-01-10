@@ -22,7 +22,10 @@ import tree1 from "../assets/badge-tree-green.PNG"
 import Logout from "../components/Logout"
 import glasses from "../assets/glasses.png"
 import scarf from "../assets/scarf.png"
-
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 
@@ -63,6 +66,67 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 
+
+/** --- Assembly ----------------------------------------- */
+function Guy(props) {
+  // Change motion every second
+  const { templateStore } = props
+
+  const [up, setUp] = useState(true)
+  // useEffect(() => void setInterval(() => setUp(previous => !previous), 450), [])
+  useInterval(() => {
+    setUp(!up)
+  }, 450);
+
+  // Turn static values into animated values
+  const aaa = templateStore.eatBool ? 'tomato' : '#EA0'
+  const bbb = templateStore.eatBool ? 0.2 : 1.2
+  const ccc = templateStore.eatBool ? Math.PI : 0
+
+  const { rotation, color, size } = useSpring({ size: up ? 1.2 : bbb, color: up ? '#EA0' : aaa, rotation: up ? 0 : ccc })
+  // useRender allows us to hook into the render-loop
+  const ref = useRef()
+  let t = 0
+  useRender(() => (ref.current.rotate.y = Math.cos((t += 0.1) / TAU)))
+  return (
+    <Shape ref={ref} path={[{ x: -3 }, { x: 3 }]} stroke={4} color="#747B9E">
+      <a.Anchor rotate={rotation.interpolate(r => ({ x: TAU / 18 + -r / 4 }))}>
+        <Shape path={[{ x: -1.7 }, { x: 1.7 }]} translate={{ y: -6 }} stroke={9} color="#E1E5EE">
+          <a.Shape stroke={11} translate={{ y: -9.7 }} color={color}>
+            <Shape translate={{ x: 0, y: -2, z: -4 }} stroke={8} color="#747B9E" />
+            <Ellipse diameter={6} rotate={{ x: -TAU / 7 }} translate={{ y: -4, z: -1 }} stroke={4} color="#444B6E" fill />
+            <Eye />
+            <Eye translate={{ x: 2.2, z: 4.7 }} />
+            <a.Ellipse diameter={1.3} scale={size} translate={{ y: 2, z: 4.7 }} rotate={{ z: TAU / 4 }} closed color="#444B6E" stroke={0.7} fill />
+            <Ellipse diameter={1} translate={{ x: -3.7, y: 1.7, z: 4.7 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.7} fill />
+            <Ellipse diameter={1} translate={{ x: 3.7, y: 1.7, z: 4.7 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.7} fill />
+            <Ellipse diameter={0.7} translate={{ x: 4.7, y: -4.7, z: 4.7 }} rotate={{ z: TAU / 4 }} closed color="lightblue" stroke={0.7} fill />
+          </a.Shape>
+          <Arm rotate={rotation.interpolate(r => ({ x: -TAU / 4 + r }))} />
+          <Arm translate={{ x: 7, y: -2 }} rotate={rotation.interpolate(r => ({ x: TAU / 4 - r }))} />
+        </Shape>
+      </a.Anchor>
+      <Leg rotate={rotation.interpolate(r => ({ x: TAU / 7 - r / 1.2 }))} />
+      <Leg translate={{ x: 3 }} rotate={rotation.interpolate(r => ({ x: -TAU / 7 + r / 1.2 }))} />
+    </Shape>
+  )
+}
+
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    borderRadius: '5px',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
+
 const MainPage = () => {
   const { templateStore } = useStores()
   const zdogRef = useRef()
@@ -80,6 +144,16 @@ const MainPage = () => {
 <img className="badge" src={tree1}></img>,
 <img className="icons" src={glasses}></img>,
 <img className="icons" src={scarf}></img>]
+  const [open, setOpen] = useState(false);
+  const classes = useStyles();
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const getData = () => {
     auth.onAuthStateChanged((user) => {
@@ -185,7 +259,26 @@ const MainPage = () => {
         <div className="userToolbar">
           <div className="icon" onClick={() => exportComponentAsPNG(zdogRef)}><FaCameraRetro size={50} color="#3D2A02" /></div>
           <div className="icon" onClick={() => setShowA(!showA)}><IoShirt size={50} color="#3D2A02" /></div>
-          <div className="icon" onClick={() => console.log("hi")}><MdInfo size={50} color="#3D2A02" /></div>
+          <div className="icon" onClick={handleOpen}><MdInfo size={50} color="#3D2A02" /></div>
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            className={classes.modal}
+            open={open}
+            onClose={handleClose}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Fade in={open}>
+              <div className={classes.paper}>
+                <h2 id="transition-modal-title">Transition modal</h2>
+                <p id="transition-modal-description">react-transition-group animates me.</p>
+              </div>
+            </Fade>
+          </Modal>
         </div>
       </div>
       <div className="zdog" ref={zdogRef}>

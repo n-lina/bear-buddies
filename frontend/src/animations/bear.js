@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Illustration, Ellipse, Shape, RoundedRect, useRender, Polygon } from 'react-zdog';
+import { Ellipse, Shape, RoundedRect, useRender, Polygon } from 'react-zdog';
 // New react-spring target, for native animation outside of React
 import { a, useSpring } from 'react-spring/zdog';
 import { observer } from "mobx-react";
@@ -28,7 +28,7 @@ function useInterval(callback, delay) {
     }, [delay]);
 }
 
-function NormalBear() {
+function NormalBear(templateStore) {
     const [up, setUp] = useState(true)
 
     useInterval(() => {
@@ -65,22 +65,43 @@ function NormalBear() {
         </a.Shape>
     );
 
-    const NeutralFace = () => (
+    const Face = () => {
+        if (templateStore.happy < 50 ||
+            templateStore.clean < 50 ||
+            templateStore.health < 50 ||
+            templateStore.energy < 50 ||
+            templateStore.full < 50) {
+            return SadFace;
+        } else if (templateStore.calm < 50) {
+            return AngryFace;
+        } else if (templateStore.happy >= 100 &&
+            templateStore.clean >= 100 &&
+            templateStore.health >= 100 &&
+            templateStore.energy >= 100 &&
+            templateStore.full >= 100 &&
+            templateStore.calm >= 100) {
+            return HappyFace;
+        } else {
+            return NeutralFace;
+        }
+    };
+    const NeutralFace = (
         <a.Shape stroke={0}>
             <a.Shape ref={ref} stroke={1.2} translate={{ x: -2.2, y: -1, z: 6.8 }} color="#241d19" fill /> {/*left eye*/}
             <a.Shape ref={ref} stroke={1.2} translate={{ x: 2.2, y: -1, z: 6.8 }} color="#241d19" fill /> {/*right eye*/}
         </a.Shape>
     );
 
-    const HappyFace = () => (
+    const HappyFace = (
         <a.Shape stroke={0}>
             <a.Ellipse stroke={0.5} diameter={1.5} quarters={2} translate={{ x: -2.2, y: -1, z: 6 }} rotate={{ z: TAU - TAU / 4 }} color="#241d19" /> {/*left eye*/}
             <a.Ellipse stroke={0.5} diameter={1.5} quarters={2} translate={{ x: 2.2, y: -1, z: 6 }} rotate={{ z: TAU - TAU / 4 }} color="#241d19" /> {/*right eye*/}
+            <Ellipse diameter={2.5} quarters={2} translate={{ y: 3, z: 7 }} rotate={{ z: TAU / 4 }} closed={true} color="#FED" fill />
         </a.Shape>
     );
 
     // happiness indicator
-    const SadFace = () => (
+    const SadFace = (
         <a.Shape stroke={0}>
             <Shape path={[{ x: -2.75 }, { x: -2 }]} stroke={0.5} translate={{ x: 0, y: -1, z: 6.8 }} color="#241d19" />
             <Shape path={[{ x: 2 }, { x: 2.75 }]} stroke={0.5} translate={{ x: 0, y: -1, z: 6.8 }} color="#241d19" />
@@ -90,7 +111,7 @@ function NormalBear() {
     );
 
     // calmness indicator
-    const AngryFace = () => (
+    const AngryFace = (
         <a.Shape stroke={0}>
             <Shape path={[{ x: -2.75 }, { x: -2 }]} stroke={0.5} translate={{ x: 0, y: -1, z: 6.8 }} color="#241d19" />
             <Shape path={[{ x: 2 }, { x: 2.75 }]} stroke={0.5} translate={{ x: 0, y: -1, z: 6.8 }} color="#241d19" />
@@ -100,21 +121,25 @@ function NormalBear() {
     );
 
     // cleanliness indicator
-    const Poop = () => (
-        <a.Shape stroke={0} translate={{ x: 20 }} scale={0.5} rotate={{ x: TAU / -4 }}>
-            <Ellipse diameter={7} color="brown" stroke={4} />
-            <Ellipse diameter={5} color="brown" stroke={3} translate={{ z: -3 }} />
-            <Ellipse diameter={3} color="brown" stroke={2} translate={{ z: -5 }} />
-            <a.Cone diameter={4} color="brown" length={-4} translate={{ z: -6 }} stroke={false} />
-        </a.Shape>
-    );
+    const Poop = () => {
+        if (templateStore.clean < 50) {
+            return (
+                <a.Shape stroke={0} translate={{ x: 20 }} scale={0.5} rotate={{ x: TAU / -4 }}>
+                    <Ellipse diameter={7} color="brown" stroke={4} />
+                    <Ellipse diameter={5} color="brown" stroke={3} translate={{ z: -3 }} />
+                    <Ellipse diameter={3} color="brown" stroke={2} translate={{ z: -5 }} />
+                    <a.Cone diameter={4} color="brown" length={-4} translate={{ z: -6 }} stroke={false} />
+                </a.Shape>
+            )
+        } else return (
+            (<a.Shape stroke={0} />)
+        )
+    };
 
     return (
         <a.Shape ref={ref} stroke={15} translate={{ y: -9.5 }} color={color}> {/*head*/}
             <a.Shape ref={ref} stroke={4} translate={{ x: -7, y: -4 }} color={color_tint} fill /> {/*left ear*/}
             <a.Shape ref={ref} stroke={4} translate={{ x: 7, y: -4 }} color={color_tint} fill /> {/*right ear*/}
-            <AngryFace />
-            {/* {templateStore.glasses && <Glasses />} */}
             <a.Shape height={3} width={2} ref={ref} scale={size} translate={{ y: 2.5, z: 6.8 }} rotate={{ z: TAU / 4 }} closed color="#b08b74" stroke={6} fill /> {/*mouth*/}
             <a.Shape height={1.3} width={1} ref={ref} scale={size} translate={{ y: 2, z: 9 }} rotate={{ z: TAU / 4 }} closed color="#241d19" stroke={3} fill> {/*nose*/}
                 <a.Ellipse height={.1} width={.05} ref={ref} translate={{ x: -.5, y: 0, z: 0 }} color="white" fill />
@@ -126,7 +151,10 @@ function NormalBear() {
             <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: -11, y: 10 }} rotate={{ z: TAU / -3 }} color={color_tint} fill /> {/*right arm*/}
             <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: 6, y: 23 }} rotate={{ z: TAU / 1 }} color={color_tint} fill /> {/*left leg*/}
             <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: -6, y: 23 }} rotate={{ z: TAU / 1 }} color={color_tint} fill /> {/*right leg*/}
-            {/* {templateStore.scarf && <Scarf />} */}
+            <Scarf />
+            <Poop />
+            <Glasses />
+            <Face />
         </a.Shape>
     );
 }
@@ -302,7 +330,7 @@ function BreatheBear() {
             </a.Shape>
             <Ellipse diameter={1} translate={{ x: -3.5, y: 1.5, z: 6.5 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.5} fill /> {/*left blush*/}
             <Ellipse diameter={1} translate={{ x: 3.5, y: 1.5, z: 6.5 }} rotate={{ z: TAU / 4 }} closed color="indianred" stroke={0.5} fill /> {/*left right*/}
-            <a.Ellipse height={7} width={4} ref={ref} stroke={14} scale={up ? 1 : tummy} translate={{ x: 0, y: 13 }} color={color} fill /> {/*body*/}
+            <a.Ellipse height={7} width={4} ref={ref} stroke={14} scale={up ? 1 : tummy} translate={{ x: 0, y: 13 }} rotate={{ z: TAU / 2 }} color={color} fill /> {/*body*/}
             <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: 4, y: 10, z: 6 }} rotate={{ z: TAU / -8 }} color={color_tint} fill /> {/*left arm*/}
             <a.Ellipse height={6} width={1.5} ref={ref} stroke={5} translate={{ x: -4, y: 10, z: 6 }} rotate={{ z: TAU / 8 }} color={color_tint} fill /> {/*right arm*/}
             <a.Ellipse height={4} width={2} ref={ref} stroke={7} translate={{ x: 4, y: 23 }} rotate={{ z: TAU / 5 }} color={color_tint} fill /> {/*left leg*/}
@@ -541,7 +569,7 @@ function Bear(props) {
         bear = PetBear();
         return bear;
     } else {
-        bear = NormalBear();
+        bear = NormalBear(templateStore);
         return bear;
     }
 }
